@@ -1,0 +1,26 @@
+span.logo {
+	top: 45px !important;
+}
+nav {
+	margin-top: -10px !important;
+}
+.title {
+	margin-top: 170px !important;
+}
+h1.smallh1 {
+	margin-top: -30px;
+}
+.social ul li {
+	zoom: 1;
+	margin-left: 10px;
+}
+.title, nav, #intro .bg1, #contact .bg2, .dotted-bar3 {
+	left: 0;
+}
+#contact .bg2 {
+	z-index: 100 !important;
+}
+#contact .container {
+	zoom: 1;
+	z-index: 300 !important;
+}

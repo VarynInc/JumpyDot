@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <h1>JumpyDot WordPress Notes</h1>
+    <p>We made several changes to the WordPress template, this document will attempt to indicate the changes that were made. Next time we upgrade hopefully we will not lose anything</p>
+    <h2>Changes Made to WordPress</h2>
+    <p>Before you upgrade you should do three things:</p>
+    <ol>
+        <li>Make a backup of the entire /blog folder in case you need to reference something overwritten in an upgrade.</li>
+        <li>Make a backup of the entire database</li>
+        <li>Do an</li>
+    </ol>
+    <h3>wp-config.php</h3>
+    <p>Setup the database connection ifo and the WP authentication keys</p>
+    <h3>wp-content/themes</h3>
+    <p>Added the ViewPoint theme from Theme Forest</p>
+    <p>Edited the following theme files. Do a diff on these files if you update so you can reapply the changes.</p>
+    <ul>
+        <li>header.php</li>
+        <li>css/base.css</li>
+        <li>css/layout.css</li>
+        <li>images/* (updated to JumpyDot images)</li>
+    </ul>
+    <h3>wp-content/uploads</h3>
+    <p>Grab all the uploaded media files from here that will be referenced in Posts and Pages.</p>
+</div>
+</body>
+</html>

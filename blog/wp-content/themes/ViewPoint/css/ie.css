@@ -1,0 +1,9 @@
+.title h1 {
+	line-height: 120px;
+}
+.title h1.smallh1 {
+	line-height: 65px;
+}
+.title h1.smallerh1 {
+	line-height: 50px;
+}
