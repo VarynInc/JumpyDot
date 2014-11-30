@@ -149,6 +149,10 @@ body {
     color: #ac676d;
 }
 
+.gamedescription {
+    min-height: 80px;
+}
+
 footer {
     border-color: #e7e7e7;
     padding: 1em;
@@ -166,6 +170,7 @@ footer {
     color: #0088cc;
     margin-top: 1em;
 }
+
 .social {
     width: 100%;
     text-align: center;
@@ -252,6 +257,7 @@ footer {
     display: block;
     width: 50%;
     margin: 0 auto;
+    padding: 0;
     text-align: center;
 }
 

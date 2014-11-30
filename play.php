@@ -151,7 +151,11 @@ $gameDescription = '';
         function setGameDeveloper (developerInfo) {
             var developerInfoDiv = document.getElementById("gameDeveloper");
             if (developerInfoDiv != null) {
-                developerInfoDiv.innerHTML = "<h4>Developed By:</h4><p><a href=\"" + developerInfo.web_site_url + "\" target=\"_new\">" + developerInfo.organization_name + "</a></p>";
+                if (developerInfo.logo_img_url != null && developerInfo.logo_img_url != '') {
+                    developerInfoDiv.innerHTML = "<h4>Developed By:</h4><p><a href=\"" + developerInfo.web_site_url + "\" target=\"_new\"><img src=\"http://www.enginesis.com" + developerInfo.logo_img_url + "\" width=100 height=50 style=\"margin-right: 20px;\"/></a></p>";
+                } else {
+                    developerInfoDiv.innerHTML = "<h4>Developed By:</h4><p><a href=\"" + developerInfo.web_site_url + "\" target=\"_new\">" + developerInfo.organization_name + "</a></p>";
+                }
             }
         }
 
@@ -171,13 +175,16 @@ $gameDescription = '';
 
             // we need to size the container to the size of the game and center it in the panel div
 
+            paddedWidth = parseInt(width);
+            paddedHeight = parseInt(height);
             if (gameContainerDiv != null) {
-                gameContainerDiv.setAttribute("style", "width: " + width + "px; height: " + height + "px; background-color: " + bgcolor + "; min-height: " + height + "px !important;");
-                gameContainerDiv.setAttribute("data-width", width);
-                gameContainerDiv.setAttribute("data-height", height);
-                gameContainerDiv.style.width = width;
-                gameContainerDiv.style.height = height;
-                gameContainerDiv.innerHTML = "<div class=\"panel panel-default\"><div class=\"" + responsiveClass + "\" style=\"height: " + height + "px; min-height: " + height + "px !important;\"><iframe class=\"embed-responsive-item\" src=\"<?php echo($enginesisServer);?>/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen /></div></div>";
+                gameContainerDiv.setAttribute("style", "width: " + paddedWidth + "px; height: " + paddedHeight + "px; background-color: " + bgcolor + "; min-height: " + paddedHeight + "px !important;");
+                gameContainerDiv.setAttribute("data-width", paddedWidth);
+                gameContainerDiv.setAttribute("data-height", paddedHeight);
+                gameContainerDiv.style.width = paddedWidth;
+                gameContainerDiv.style.height = paddedHeight;
+                gameContainerDiv.innerHTML = "<iframe src=\"<?php echo($enginesisServer);?>/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen width=\"100%\" height=\"100%\" style=\"margin: 0; padding: 0; border: 0;\"/>";
+//                gameContainerDiv.innerHTML = "<div class=\"panel panel-default\"><div class=\"" + responsiveClass + "\" style=\"height: " + height + "px; min-height: " + height + "px !important;\"><iframe class=\"embed-responsive-item\" src=\"<?php echo($enginesisServer);?>/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen /></div></div>";
             }
         }
 

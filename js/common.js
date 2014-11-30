@@ -11,6 +11,16 @@ function isValidEmail (email) {
     return re.test(email);
 }
 
+function compareTitle(a, b) {
+    if (a.title < b.title) {
+        return -1;
+    } else if (a.title > b.title) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 function showSubscribePopup () {
     var popup = document.getElementById("popupScrim"),
         subscribeFrame = document.getElementById("popupFrame");
@@ -75,7 +85,7 @@ function makeGameModule (gameId, gameName, gameDescription, gameImg, gameLink) {
     title = "Play " + gameName + " Now!";
     innerHtml = "<div class=\"thumbnail\">";
     innerHtml += "<a href=\"" + gameLink + "\" title=\"" + title + "\"><img class=\"thumbnail-img\" src=\"" + gameImg + "\" alt=\"" + gameName + "\"/></a>";
-    innerHtml += "<div class=\"caption\"><h3>" + gameName + "</h3><p>" + gameDescription + "</p>";
+    innerHtml += "<div class=\"caption\"><h3>" + gameName + "</h3><p class=\"gamedescription\">" + gameDescription + "</p>";
     innerHtml += "<p><a href=\"" + gameLink + "\" class=\"btn btn-primary btn-success\" role=\"button\" title=\"" + title + "\" alt=\"" + title + "\">Play Now!</a></p>";
     innerHtml += "</div></div>";
     return innerHtml;
@@ -128,6 +138,7 @@ function gameListGamesResponse (results, elementId) {
         itemHtml;
 
     if (results != null && results.length > 0 && gamesContainer != null) {
+        results.sort(compareTitle);
         for (i = 0; i < results.length; i ++) {
             gameItem = results[i];
             gameImg = "http://www.enginesis.com/games/" + gameItem.game_name + "/images/300x225.png";
