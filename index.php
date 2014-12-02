@@ -1,6 +1,6 @@
 <?php
 require_once('procs/common.php');
-$search = $_REQUEST['q'];
+$search = getPostOrRequestVar('q', null);
 if ($search != null) {
     header('location:/allgames.php?q=' . $search);
     exit;
