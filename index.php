@@ -63,10 +63,14 @@ if ($search != null) {
         <script src="js/head.min.js"></script>
         <script type="text/javascript">
 
+            var enginesisSiteId = 107,
+                enginesisGameListId = 6,
+                enginesisHomePagePromoId = 2;
+
             function initApp() {
-                window.EnginesisSession = enginesis(107, 0, 0, '-l', '', '', 'en', enginesisCallBack);
-                EnginesisSession.gameListListGames(6, null);
-                EnginesisSession.promotionItemList(2, EnginesisSession.getDateNow(), null);
+                window.EnginesisSession = enginesis(enginesisSiteId, 0, 0, '<?php echo($stage);?>', '', '', 'en', enginesisCallBack);
+                EnginesisSession.gameListListGames(enginesisGameListId, null);
+                EnginesisSession.promotionItemList(enginesisHomePagePromoId, EnginesisSession.getDateNow(), null);
             }
 
             function enginesisCallBack (enginesisResponse) {
