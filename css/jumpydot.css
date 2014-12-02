@@ -55,11 +55,10 @@ body {
     vertical-align: middle;
 }
 
-.ad200 {
+.ad320 {
     display: inline-block;
-    width: 300px;
-    height: 148px;
-    background-color: #003399;
+    width: 320px;
+    height: 150px;
     text-align: center;
     vertical-align: middle;
 }

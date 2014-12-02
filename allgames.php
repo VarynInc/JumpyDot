@@ -181,15 +181,14 @@ if ($search != '') {
                     </div>
                 </div>
                 <div class="row">
-                    <div id="ad200" class="col-sm-4 col-md-2">
-                        <div id="boxAd200" class="ad200">
+                    <div id="ad320" class="col-sm-4 col-md-2">
+                        <div id="boxAd200" class="ad320">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- Game Ad -->
+                            <!-- Small Game Ad -->
                             <ins class="adsbygoogle"
-                                 style="display:block"
+                                 style="display:inline-block;width:320px;height:100px"
                                  data-ad-client="ca-pub-3963379951847099"
-                                 data-ad-slot="6823469798"
-                                 data-ad-format="auto"></ins>
+                                 data-ad-slot="1026321395"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
