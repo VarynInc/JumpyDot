@@ -87,10 +87,10 @@ require_once('procs/common.php');
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/allgames.php">All Games</a></li>
                         <li><a href="/blog/?page_id=48">Blog</a></li>
-                        <li><a href="/blog/#our-team">About</a></li>
+                        <li class="active"><a href="/blog/#our-team">About</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" role="search" method="GET" action="/allgames.php">
                         <div class="form-group">
@@ -109,13 +109,13 @@ require_once('procs/common.php');
             <div class="panel-heading">
                 <h1>Press</h1>
                 <p>This document holds links, assets, and information relevant to press coverage related to Jumpy Dot.</p>
-                <h5>Jumpy Dot Logo</h5>
+                <h3>Jumpy Dot Logo</h3>
                 <p>Our logo has two forms, the full image logo and the ball logo:</p>
-                <ul>
-                    <li><a href="images/JumpyDotLogo1000x351.png"><img src="images/JumpyDotLogo200x70.png"/></a></li>
+                <ul style="list-style-type: none;">
+                    <li><a href="images/JumpyDotLogo1000x351.png"><img src="images/JumpyDotLogo200x70.png"/></a></li><br/><br/>
                     <li><a href="images/JumpyDotBallIcon350x350.png"><img src="images/JumpyDotBallIcon48x48.png"/></a></li>
                 </ul>
-                <h5>Media contacts</h5>
+                <h3>Media contacts</h3>
                 <p>Email our press team at: <a href="mailto:info@jumpydot.com">info@jumpydot.com</a>. If your communication is regarding a non-business matter it may not receive a reply.</p>
                 <p>For all other inquiries, please visit our Help Center or email <a href="mailto:support@jumpydot.com">support@jumpydot.com</a>.</p>
             </div>
