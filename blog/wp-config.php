@@ -1,4 +1,5 @@
 <?php
+require_once('../procs/common.php');
 /**
  * The base configurations of the WordPress.
  *
@@ -13,26 +14,12 @@
  *
  * @package WordPress
  */
-
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define('DB_NAME', 'jumpydot');
-
-/** MySQL database username */
-define('DB_USER', 'jumpydot');
-
-/** MySQL database password */
-define('DB_PASSWORD', 'bOunCy;24');
-
-/** MySQL hostname */
-define('DB_HOST', 'localhost');
-
-/** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
-
-/** The Database Collate type. Don't change this if in doubt. */
-define('DB_COLLATE', '');
-
+define('DB_NAME',     $sqlDatabaseConnectionInfo['db']);
+define('DB_USER',     $sqlDatabaseConnectionInfo['user']);
+define('DB_PASSWORD', $sqlDatabaseConnectionInfo['password']);
+define('DB_HOST',     $sqlDatabaseConnectionInfo['host']);
+define('DB_CHARSET',  'utf8');
+define('DB_COLLATE',  '');
 define('WPDB_DRIVER', 'pdo_mysql');
 
 /**#@+
