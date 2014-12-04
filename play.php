@@ -168,23 +168,40 @@ $gameDescription = '';
 
         function setGameContainer (gameData) {
             var gameContainerDiv = document.getElementById("gameContainer"),
-                responsiveClass = "embed-responsive", //  embed-responsive-4x3
+                elementDiv,
                 width = gameData.width,
                 height = gameData.height,
                 bgcolor = gameData.bgcolor;
 
-            // we need to size the container to the size of the game and center it in the panel div
+            // we need to size the container to the size of the game and center it in the panel div.
+            // If the requested game size is too small then make it take the full screen
 
             paddedWidth = parseInt(width);
             paddedHeight = parseInt(height);
             if (gameContainerDiv != null) {
-                gameContainerDiv.setAttribute("style", "width: " + paddedWidth + "px; height: " + paddedHeight + "px; background-color: " + bgcolor + "; min-height: " + paddedHeight + "px !important;");
-                gameContainerDiv.setAttribute("data-width", paddedWidth);
-                gameContainerDiv.setAttribute("data-height", paddedHeight);
-                gameContainerDiv.style.width = paddedWidth;
-                gameContainerDiv.style.height = paddedHeight;
-                gameContainerDiv.innerHTML = "<iframe src=\"<?php echo($enginesisServer);?>/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen width=\"100%\" height=\"100%\" style=\"margin: 0; padding: 0; border: 0;\"/>";
-//                gameContainerDiv.innerHTML = "<div class=\"panel panel-default\"><div class=\"" + responsiveClass + "\" style=\"height: " + height + "px; min-height: " + height + "px !important;\"><iframe class=\"embed-responsive-item\" src=\"<?php echo($enginesisServer);?>/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen /></div></div>";
+                if (window.innerWidth <= paddedWidth || window.innerHeight <= paddedHeight) {
+                    var hideTheseElements = ['playgame-navbar', 'playgame-InfoPanel', 'playgame-BottomPanel'],
+                        unwantedElement;
+
+                    for (unwantedElement in hideTheseElements) {
+                        elementDiv = document.getElementById(hideTheseElements[unwantedElement]);
+                        if (elementDiv != null) {
+                            elementDiv.style.display = 'none';
+                        }
+                    }
+                    gameContainerDiv.setAttribute("style", "width: 100%; height: 100%; background-color: " + bgcolor + "; min-height: " + paddedHeight + "px !important; overflow: hidden;");
+                    gameContainerDiv.setAttribute("data-width", paddedWidth);
+                    gameContainerDiv.setAttribute("data-height", paddedHeight);
+                    gameContainerDiv.style.width = "100%";
+                    gameContainerDiv.style.height = "100%";
+                } else {
+                    gameContainerDiv.setAttribute("style", "width: " + paddedWidth + "px; height: " + paddedHeight + "px; background-color: " + bgcolor + "; min-height: " + paddedHeight + "px !important; overflow: hidden;");
+                    gameContainerDiv.setAttribute("data-width", paddedWidth);
+                    gameContainerDiv.setAttribute("data-height", paddedHeight);
+                    gameContainerDiv.style.width = paddedWidth;
+                    gameContainerDiv.style.height = paddedHeight;
+                }
+                gameContainerDiv.innerHTML = "<iframe src=\"<?php echo($enginesisServer);?>/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen scrolling=\"no\" seamless=\"seamless\" width=\"100%\" height=\"100%\" style=\"margin: 0; padding: 0; border: 0;\"/>";
             }
         }
 
@@ -205,7 +222,7 @@ $gameDescription = '';
         </div>
     </div>
 </div>
-<div class="navbar-wrapper">
+<div  id="playgame-navbar" class="navbar-wrapper">
     <div class="container">
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
@@ -239,7 +256,7 @@ $gameDescription = '';
 <div class="container top-promo-area">
     <div id="gameContainer" class="row">
     </div>
-    <div class="row">
+    <div  id="playgame-InfoPanel" class="row">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="gameInfo">
@@ -250,7 +267,7 @@ $gameDescription = '';
         </div>
     </div>
 </div><!-- /top-promo-area -->
-<div class="container marketing">
+<div id="playgame-BottomPanel" class="container marketing">
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
