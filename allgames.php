@@ -74,7 +74,7 @@ $search = getPostOrRequestVar('q', '');
 
         function initApp() {
             var searchString = "<?php echo($search);?>";
-            window.EnginesisSession = enginesis(107, 0, 0, '-l', '', '', 'en', enginesisCallBack);
+            window.EnginesisSession = enginesis(107, 0, 0, '<?php echo($stage);?>', '', '', 'en', enginesisCallBack);
             if (searchString != "") {
                 // a search string was give, return games related to that
                 EnginesisSession.gameFind(searchString, null);

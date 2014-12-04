@@ -92,7 +92,7 @@ $gameDescription = '';
 
         function initApp() {
             var gameId = "<?php echo($gameId);?>";
-            window.EnginesisSession = enginesis(107, 0, 0, '-l', '', '', 'en', enginesisCallBack);
+            window.EnginesisSession = enginesis(107, 0, 0, '<?php echo($stage);?>', '', '', 'en', enginesisCallBack);
             if (parseInt(gameId) > 0) {
                 EnginesisSession.gameGet(gameId);
             } else {
