@@ -30,7 +30,11 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
         callBackFunction = _callBackFunction,
         authToken = _authToken,
         developerKey = _developerKey,
-        loggedInUserId = 0;
+        loggedInUserId = 0,
+        platform = '',
+        locale = 'US-en',
+        isNativeBuild = false,
+        isTouchDevice = false;
 
 
     var requestComplete = function (enginesisResponseData, overRideCallBackFunction) {
@@ -126,6 +130,15 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
         return serverStage;
     };
 
+    var setPlatform = function () {
+        platform = navigator.platform;
+        locale = navigator.language;
+        isNativeBuild = document.location.protocol == 'file:';
+        if (Modernizr != null && Modernizr.touch != null) {
+            isTouchDevice = Modernizr.touch;
+        }
+    };
+
     var debugLog = function (message, level) {
         if (debugging) {
             if (level == null) {
@@ -140,6 +153,7 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
         }
     };
 
+    setPlatform();
     qualifyAndSetServerStage(enginesisServerStage);
 
     // =====================================================================
@@ -153,12 +167,20 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
             return VERSION;
         },
 
+        isTouchDevice: function () {
+            return isTouchDevice;
+        },
+
         serverStageSet: function (newServerStage) {
             return qualifyAndSetServerStage(newServerStage);
         },
 
         serverStageGet: function () {
             return serverStage;
+        },
+
+        serverBaseUrlGet: function () {
+            return serverHost;
         },
 
         gameIdGet: function () {

@@ -135,13 +135,18 @@ function gameListGamesResponse (results, elementId) {
         gameLink,
         gamesContainer = document.getElementById(elementId),
         newDiv,
-        itemHtml;
+        itemHtml,
+        baseURL = document.location.protocol + "//" + EnginesisSession.serverBaseUrlGet() + "/games/",
+        isTouchDevice = EnginesisSession.isTouchDevice();
 
     if (results != null && results.length > 0 && gamesContainer != null) {
         results.sort(compareTitle);
         for (i = 0; i < results.length; i ++) {
             gameItem = results[i];
-            gameImg = "http://www.enginesis.com/games/" + gameItem.game_name + "/images/300x225.png";
+            if (isTouchDevice && game_item.game_plugin_id != "10") {
+                continue; // only show HTML5 games on touch devices
+            }
+            gameImg = baseURL + gameItem.game_name + "/images/300x225.png";
             gameLink = "/play.php?gameid=" + gameItem.game_id;
             itemHtml = makeGameModule(gameItem.game_id, gameItem.title, gameItem.short_desc, gameImg, gameLink);
             newDiv = document.createElement('div');
@@ -165,4 +170,3 @@ function promotionItemListResponse (results) {
         // no promotions!
     }
 }
-

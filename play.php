@@ -5,6 +5,9 @@ if ($gameId == '') {
     $gameId = getPostOrRequestVar('gameid', '');
 }
 if ($gameId == '') {
+    $gameId = getPostOrRequestVar('game_id', '');
+}
+if ($gameId == '') {
     $gameId = getPostOrRequestVar('gameId', '');
 }
 if ($gameId == '') {
