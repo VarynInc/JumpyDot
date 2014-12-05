@@ -143,7 +143,7 @@ function gameListGamesResponse (results, elementId) {
         results.sort(compareTitle);
         for (i = 0; i < results.length; i ++) {
             gameItem = results[i];
-            if (isTouchDevice && game_item.game_plugin_id != "10") {
+            if (isTouchDevice && gameItem.game_plugin_id != "10") {
                 continue; // only show HTML5 games on touch devices
             }
             gameImg = baseURL + gameItem.game_name + "/images/300x225.png";

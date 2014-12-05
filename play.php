@@ -192,11 +192,17 @@ $gameDescription = '';
                             elementDiv.style.display = 'none';
                         }
                     }
-                    gameContainerDiv.setAttribute("style", "width: 100%; height: 100%; background-color: " + bgcolor + "; min-height: " + paddedHeight + "px !important; overflow: hidden;");
+                    paddedWidth = window.innerWidth;
+                    paddedHeight = window.innerHeight;
+                    gameContainerDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: 100%; height: 100%; background-color: " + bgcolor + "; min-height: " + paddedHeight + "px !important; overflow: hidden;");
                     gameContainerDiv.setAttribute("data-width", paddedWidth);
                     gameContainerDiv.setAttribute("data-height", paddedHeight);
                     gameContainerDiv.style.width = "100%";
                     gameContainerDiv.style.height = "100%";
+                    gameContainerDiv = document.getElementById("topContainer");
+                    gameContainerDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: 100%; height: 100%;");
+                    gameContainerDiv = document.body;
+                    gameContainerDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: 100%; height: 100%;");
                 } else {
                     gameContainerDiv.setAttribute("style", "width: " + paddedWidth + "px; height: " + paddedHeight + "px; background-color: " + bgcolor + "; min-height: " + paddedHeight + "px !important; overflow: hidden;");
                     gameContainerDiv.setAttribute("data-width", paddedWidth);
@@ -256,7 +262,7 @@ $gameDescription = '';
         </nav>
     </div>
 </div><!-- /.navbar-wrapper -->
-<div class="container top-promo-area">
+<div id="topContainer" class="container top-promo-area">
     <div id="gameContainer" class="row">
     </div>
     <div  id="playgame-InfoPanel" class="row">
