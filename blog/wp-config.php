@@ -1,5 +1,5 @@
 <?php
-require_once('../procs/common.php');
+require_once(dirname(__FILE__) . '/../procs/common.php');
 /**
  * The base configurations of the WordPress.
  *
