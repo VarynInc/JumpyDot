@@ -23,6 +23,9 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
         submitToURL = null,
         siteId = siteId || 0,
         gameId = gameId || 0,
+        gameWidth = 0,
+        gameHeight = 0,
+        gamePluginId = 0,
         gameGroupId = gameGroupId || 0,
         languageCode = languageCode || 'en',
         syncId = 0,
@@ -162,6 +165,11 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
     return {
 
         ShareHelper: ShareHelper,
+        gameId: gameId,
+        gameWidth: gameWidth,
+        gameHeight: gameHeight,
+        gamePluginId: gamePluginId,
+        version: VERSION,
 
         versionGet: function () {
             return VERSION;
