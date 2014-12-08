@@ -127,7 +127,7 @@ function makePromoIndicators (numberOfPromos, activeIndicator) {
     return innerHtml;
 }
 
-function gameListGamesResponse (results, elementId) {
+function gameListGamesResponse (results, elementId, maxItems) {
     // results is an array of games
     var i,
         gameItem,
@@ -136,16 +136,22 @@ function gameListGamesResponse (results, elementId) {
         gamesContainer = document.getElementById(elementId),
         newDiv,
         itemHtml,
+        countOfGamesShown,
         baseURL = document.location.protocol + "//" + EnginesisSession.serverBaseUrlGet() + "/games/",
         isTouchDevice = EnginesisSession.isTouchDevice();
 
     if (results != null && results.length > 0 && gamesContainer != null) {
         results.sort(compareTitle);
-        for (i = 0; i < results.length; i ++) {
+        if (maxItems == null || maxItems < 1) {
+            maxItems = results.length;
+        }
+        countOfGamesShown = 0;
+        for (i = 0; i < results.length && countOfGamesShown < maxItems; i ++) {
             gameItem = results[i];
             if (isTouchDevice && gameItem.game_plugin_id != "10") {
                 continue; // only show HTML5 games on touch devices
             }
+            countOfGamesShown ++;
             gameImg = baseURL + gameItem.game_name + "/images/300x225.png";
             gameLink = "/play.php?gameid=" + gameItem.game_id;
             itemHtml = makeGameModule(gameItem.game_id, gameItem.title, gameItem.short_desc, gameImg, gameLink);
