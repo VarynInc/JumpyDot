@@ -5,6 +5,7 @@ if ($search != null) {
     header('location:/allgames.php?q=' . $search);
     exit;
 }
+$siteId = 107;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +64,7 @@ if ($search != null) {
         <script src="js/head.min.js"></script>
         <script type="text/javascript">
 
-            var enginesisSiteId = 107,
+            var enginesisSiteId = <?php echo($siteId);?>,
                 enginesisGameListId = 6,
                 enginesisHomePagePromoId = 2;
 

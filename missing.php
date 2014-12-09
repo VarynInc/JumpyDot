@@ -1,5 +1,6 @@
 <?php
 require_once('procs/common.php');
+$siteId = 107;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +72,8 @@ require_once('procs/common.php');
         ga('send', 'pageview');
 
         function initApp() {
-            window.EnginesisSession = enginesis(107, 0, 0, '-l', '', '', 'en', enginesisCallBack);
+            window.EnginesisSession = enginesis(<?php echo($siteId);?>, 0, 0, '-l', '', '', 'en', enginesisCallBack);
+            EnginesisSession.siteListGamesRandom(21, null);
         }
 
         function showSubscribePopup () {
@@ -138,6 +140,11 @@ require_once('procs/common.php');
                             setPopupMessage("Server reports an error: " + errorMessage, "popupMessageResponseError");
                         }
                         break;
+                    case "SiteListGamesRandom":
+                        if (succeeded == 1) {
+                            gameListGamesResponse(enginesisResponse.results.result, "MissingPageGamesArea", 9);
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -198,74 +205,18 @@ require_once('procs/common.php');
             <h2>Not Found</h2>
             <p>The content you are looking for is not at this location. The link may be incorrectly entered or it was moved to a new location.</p>
             <p>Please check it, or use our search field or one of our other links to find the content you are looking for.</p>
+            <p>Or, try one of these awesome games:</p>
         </div><!-- /.Missing -->
-        <div id="ad300" class="ad300 col-sm-4 col-md-2">
-            <p id="ad300-subtitle" class="text-center"><small>Advertisement</small></p>
+        <div id="ad300" class="col-sm-4 col-md-2">
+            <div id="boxAd300" class="ad300">
+                <iframe src="<?php echo($webServer);?>/common/ad300.html" frameborder="0" scrolling="no" style="width: 300px; height: 250px; overflow: hidden; z-index: 9999; left: 0px; bottom: 0px; display: inline-block;"></iframe>
+            </div>
+            <p id="ad300-subtitle" class="text-right"><small>Advertisement</small></p>
         </div>
     </div><!-- row -->
 </div><!-- /.carousel -->
 <div class="container marketing">
-    <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/closestToThePin/promo-1.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Closest to the Pin</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/zamBeeZee/promo-zambeezee.jpg" alt="Game Title">
-                <div class="caption">
-                    <h3>Zam BeeZee</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/MatchMaster3000/promo-matchmaster.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Match Master 3000</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/RealHousewivesMemoryChallenge/promo-rh.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Real Housewives Memory Challenge</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/stacker/promo-stacker.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Awards Stacker</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/closestToThePin/promo-1.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Game Title</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
+    <div id="MissingPageGamesArea" class="row">
     </div>
     <hr/>
     <footer>
