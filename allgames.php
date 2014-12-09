@@ -69,7 +69,7 @@ $search = getPostOrRequestVar('q', '');
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-55025061-1', 'auto');
+        ga('create', 'UA-57520503-1', 'auto');
         ga('send', 'pageview');
 
         function initApp() {
@@ -184,11 +184,11 @@ if ($search != '') {
                     <div id="ad320" class="col-sm-4 col-md-2">
                         <div id="boxAd200" class="ad320">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- Small Game Ad -->
+                            <!-- JumpyDot-320x100-Game-Ad -->
                             <ins class="adsbygoogle"
                                  style="display:inline-block;width:320px;height:100px"
-                                 data-ad-client="ca-pub-3963379951847099"
-                                 data-ad-slot="1026321395"></ins>
+                                 data-ad-client="ca-pub-9118730651662049"
+                                 data-ad-slot="2338504617"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
@@ -197,6 +197,18 @@ if ($search != '') {
                 </div>
             </div>
         </div>
+    </div>
+    <div id="bottomAd" class="row">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- JumpyDot Responsive -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9118730651662049"
+             data-ad-slot="5571172619"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
     <hr/>
     <footer>

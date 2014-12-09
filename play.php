@@ -90,7 +90,7 @@ $gameDescription = '';
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-55025061-1', 'auto');
+        ga('create', 'UA-57520503-1', 'auto');
         ga('send', 'pageview');
 
         function initApp() {
@@ -381,6 +381,18 @@ $gameDescription = '';
         </div>
     </div><!-- row -->
     <div id="PlayPageGamesArea" class="row">
+    </div>
+    <div id="bottomAd" class="row">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- JumpyDot Responsive -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9118730651662049"
+             data-ad-slot="5571172619"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
     <hr/>
     <footer>
