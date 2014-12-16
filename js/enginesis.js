@@ -61,7 +61,7 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
         var enginesisParameters = serverParamObjectMake(fn, parameters),
             crossOriginRequest = new XMLHttpRequest();
 
-        if (typeof crossOriginRequest.withCredentials == undefined) {
+        if (typeof crossOriginRequest.withCredentials === undefined) {
             debugLog("CORS is not supported");
         } else if ( ! disabled) {
             crossOriginRequest.onload = function(e) {

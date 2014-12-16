@@ -110,7 +110,6 @@ $gameDescription = '';
             } else {
                 EnginesisSession.gameGetByName(gameId);
             }
-            EnginesisSession.siteListGamesRandom(21, null);
             if (EnginesisSession.isTouchDevice()) {
                 window.addEventListener('orientationchange', setFrameSize, false);
             }
@@ -135,6 +134,7 @@ $gameDescription = '';
                         } else {
                             setGameErrorMessage(errorMessage);
                         }
+                        EnginesisSession.siteListGamesRandom(21, null);
                         break;
                     case "DeveloperGet":
                         setGameDeveloper(enginesisResponse.results.result[0]);
