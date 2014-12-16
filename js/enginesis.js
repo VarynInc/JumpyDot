@@ -116,6 +116,8 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
     };
 
     var qualifyAndSetServerStage = function (newServerStage) {
+        var regMatch;
+
         switch (newServerStage) {
             case '':
             case '-l':
@@ -123,12 +125,19 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
             case '-q':
             case '-x':
                 serverStage = newServerStage;
+                serverHost = 'www.enginesis' + serverStage + '.com';
                 break;
             default:
-                serverStage = ''; // anything we do not expect goes to the live instance
+                // if it was not a stage match assume it is a full host name, find the stage in it if it exists
+                regMatch = /\-[ldqx]\./.exec(newServerStage);
+                if (regMatch.index > 0) {
+                    serverStage = newServerStage.substr(regMatch.index, 2);
+                } else {
+                    serverStage = ''; // anything we do not expect goes to the live instance
+                }
+                serverHost = newServerStage;
                 break;
         }
-        serverHost = 'www.enginesis' + serverStage + '.com';
         submitToURL = (useHTTPS ? 'https://' : 'http://') + serverHost + '/index.php';
         return serverStage;
     };
