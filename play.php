@@ -38,7 +38,7 @@ $gameDescription = '';
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="description" content="At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
@@ -141,7 +141,7 @@ $gameDescription = '';
                         break;
                     case "SiteListGamesRandom":
                         if (succeeded == 1) {
-                            gameListGamesResponse(enginesisResponse.results.result, "PlayPageGamesArea", 9);
+                            gameListGamesResponse(enginesisResponse.results.result, "PlayPageGamesArea", 9, false);
                         }
                         break;
                     default:

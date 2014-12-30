@@ -98,7 +98,7 @@ $search = getPostOrRequestVar('q', '');
                     case "SiteListGames":
                     case "GameFind":
                         if (succeeded == 1) {
-                            gameListGamesResponse(enginesisResponse.results.result, "AllGamesArea");
+                            gameListGamesResponse(enginesisResponse.results.result, "AllGamesArea", null, true);
                         }
                         break;
                     default:

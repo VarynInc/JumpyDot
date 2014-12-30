@@ -92,7 +92,7 @@ $siteId = 107;
                             break;
                         case "GameListListGames":
                             if (succeeded == 1) {
-                                gameListGamesResponse(enginesisResponse.results.result, "HomePageGamesArea");
+                                gameListGamesResponse(enginesisResponse.results.result, "HomePageGamesArea", null, false);
                             }
                             break;
                         default:

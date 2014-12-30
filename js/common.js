@@ -127,7 +127,7 @@ function makePromoIndicators (numberOfPromos, activeIndicator) {
     return innerHtml;
 }
 
-function gameListGamesResponse (results, elementId, maxItems) {
+function gameListGamesResponse (results, elementId, maxItems, sortList) {
     // results is an array of games
     var i,
         gameItem,
@@ -141,15 +141,20 @@ function gameListGamesResponse (results, elementId, maxItems) {
         isTouchDevice = EnginesisSession.isTouchDevice();
 
     if (results != null && results.length > 0 && gamesContainer != null) {
-        results.sort(compareTitle);
+        if (sortList == null) {
+            sortList = false;
+        }
+        if (sortList) {
+            results.sort(compareTitle);
+        }
         if (maxItems == null || maxItems < 1) {
             maxItems = results.length;
         }
         countOfGamesShown = 0;
         for (i = 0; i < results.length && countOfGamesShown < maxItems; i ++) {
             gameItem = results[i];
-            if (isTouchDevice && gameItem.game_plugin_id != "10") {
-                continue; // only show HTML5 games on touch devices
+            if (isTouchDevice && ! (gameItem.game_plugin_id == "10" || gameItem.game_plugin_id == "9")) {
+                continue; // only show HTML5 or embed games on touch devices
             }
             countOfGamesShown ++;
             gameImg = baseURL + gameItem.game_name + "/images/300x225.png";

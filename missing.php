@@ -142,7 +142,7 @@ $siteId = 107;
                         break;
                     case "SiteListGamesRandom":
                         if (succeeded == 1) {
-                            gameListGamesResponse(enginesisResponse.results.result, "MissingPageGamesArea", 9);
+                            gameListGamesResponse(enginesisResponse.results.result, "MissingPageGamesArea", 9, false);
                         }
                         break;
                     default:
