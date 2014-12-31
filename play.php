@@ -100,7 +100,8 @@ $gameDescription = '';
 
         function initApp() {
             var gameId = "<?php echo($gameId);?>",
-                serverHostDomain = 'jumpydot<?php echo($stage);?>.com';
+                serverStage = "<?php echo($stage);?>",
+                serverHostDomain = 'jumpydot' + serverStage + '.com';
 
             enginesisServer = 'enginesis.' + serverHostDomain;
             document.domain = serverHostDomain;
@@ -204,76 +205,97 @@ $gameDescription = '';
             EnginesisSession.gamePluginId = parseInt(gameData.game_plugin_id);
             allowScroll = parseInt(gameData.popup) == 0 ? "no" : "yes";
             if (gameContainerDiv != null) {
-                requiredWidth = EnginesisSession.gameWidth;
-                requiredHeight = EnginesisSession.gameHeight;
-                isResizable = EnginesisSession.gamePluginId == 10;
-                if (isResizable && (window.innerWidth <= requiredWidth || window.innerHeight <= requiredHeight)) {
-                    setToFullScreen = isTouchDevice || window.innerWidth < 600;
-                    if (setToFullScreen) {
+                if (isTouchDevice && EnginesisSession.gamePluginId == 9) {
+                    // if we are on mobile and this is an Embed type game, just embed the game link directly into the div.
+                    gameContainerDiv.style.width = "100%";
+                    gameContainerDiv.style.height = "auto";
+                    insertAndExecute("gameContainer", gameData.game_link);
+                } else {
+                    requiredWidth = EnginesisSession.gameWidth;
+                    requiredHeight = EnginesisSession.gameHeight;
+                    isResizable = EnginesisSession.gamePluginId == 10;
+                    if (isResizable && (window.innerWidth <= requiredWidth || window.innerHeight <= requiredHeight)) {
+                        setToFullScreen = isTouchDevice || window.innerWidth < 600;
+                        if (setToFullScreen) {
 
-                        // the container is too small to fit the game so we are going to make the game take up the entire available window. Game is responsible for resizing itself in the available window.
+                            // the container is too small to fit the game so we are going to make the game take up the entire available window. Game is responsible for resizing itself in the available window.
 
-                        var hideTheseElements = ['playgame-navbar', 'playgame-InfoPanel', 'playgame-BottomPanel'],
-                            unwantedElement;
+                            var hideTheseElements = ['playgame-navbar', 'playgame-InfoPanel', 'playgame-BottomPanel'],
+                                unwantedElement;
 
-                        for (unwantedElement in hideTheseElements) {
-                            elementDiv = document.getElementById(hideTheseElements[unwantedElement]);
-                            if (elementDiv != null) {
-                                elementDiv.style.display = 'none';
+                            for (unwantedElement in hideTheseElements) {
+                                elementDiv = document.getElementById(hideTheseElements[unwantedElement]);
+                                if (elementDiv != null) {
+                                    elementDiv.style.display = 'none';
+                                }
                             }
+                            requiredWidth = window.innerWidth;
+                            requiredHeight = window.innerHeight;
+                            gameContainerDiv.setAttribute("style", "position: absolute; margin: 0; padding: 0; left: 0; top: 0; width: 100%; height: 100%; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
+                            gameContainerDiv.setAttribute("data-width", requiredWidth);
+                            gameContainerDiv.setAttribute("data-height", requiredHeight);
+                            gameContainerDiv.style.width = "100%";
+                            gameContainerDiv.style.height = "100%";
+                            elementDiv = document.getElementById("topContainer");
+                            elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
+                            elementDiv = document.body;
+                            elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
+                        } else {
+
+                            // resize the game to the smaller of width or height, but honor its aspect ratio. Game is responsible for resizing itself in the available window.
+
+                            if (window.innerWidth < requiredWidth) { // size based on smaller width
+                                if (requiredWidth > requiredHeight) {
+                                    aspectRatio = requiredHeight / requiredWidth;
+                                    requiredHeight = aspectRatio * window.innerWidth;
+                                    requiredWidth = window.innerWidth;
+                                } else {
+                                    aspectRatio = requiredWidth / requiredHeight;
+                                    requiredWidth = aspectRatio * window.innerHeight;
+                                    requiredHeight = window.innerHeight;
+                                }
+                            } else { // size based on smaller height
+                                if (requiredWidth > requiredHeight) {
+                                    aspectRatio = requiredWidth / requiredHeight;
+                                    requiredWidth = aspectRatio * window.innerHeight;
+                                    requiredHeight = window.innerHeight;
+                                } else {
+                                    aspectRatio = requiredHeight / requiredWidth;
+                                    requiredHeight = aspectRatio * window.innerWidth;
+                                    requiredWidth = window.innerWidth;
+                                }
+                            }
+                            gameContainerDiv.setAttribute("style", "position: relative; padding: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; overflow: hidden;");
+                            gameContainerDiv.setAttribute("data-width", requiredWidth);
+                            gameContainerDiv.setAttribute("data-height", requiredHeight);
+                            gameContainerDiv.style.width = requiredWidth;
+                            gameContainerDiv.style.height = requiredHeight;
                         }
-                        requiredWidth = window.innerWidth;
-                        requiredHeight = window.innerHeight;
-                        gameContainerDiv.setAttribute("style", "position: absolute; margin: 0; padding: 0; left: 0; top: 0; width: 100%; height: 100%; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
-                        gameContainerDiv.setAttribute("data-width", requiredWidth);
-                        gameContainerDiv.setAttribute("data-height", requiredHeight);
-                        gameContainerDiv.style.width = "100%";
-                        gameContainerDiv.style.height = "100%";
-                        elementDiv = document.getElementById("topContainer");
-                        elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
-                        elementDiv = document.body;
-                        elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
                     } else {
-
-                        // resize the game to the smaller of width or height, but honor its aspect ratio. Game is responsible for resizing itself in the available window.
-
-                        if (window.innerWidth < requiredWidth) { // size based on smaller width
-                            if (requiredWidth > requiredHeight) {
-                                aspectRatio = requiredHeight / requiredWidth;
-                                requiredHeight = aspectRatio * window.innerWidth;
-                                requiredWidth = window.innerWidth;
-                            } else {
-                                aspectRatio = requiredWidth / requiredHeight;
-                                requiredWidth = aspectRatio * window.innerHeight;
-                                requiredHeight = window.innerHeight;
-                            }
-                        } else { // size based on smaller height
-                            if (requiredWidth > requiredHeight) {
-                                aspectRatio = requiredWidth / requiredHeight;
-                                requiredWidth = aspectRatio * window.innerHeight;
-                                requiredHeight = window.innerHeight;
-                            } else {
-                                aspectRatio = requiredHeight / requiredWidth;
-                                requiredHeight = aspectRatio * window.innerWidth;
-                                requiredWidth = window.innerWidth;
-                            }
-                        }
+                        // this sets the container to a fixed size and resizing the window does not resize the container, only center it
                         gameContainerDiv.setAttribute("style", "position: relative; padding: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; overflow: hidden;");
                         gameContainerDiv.setAttribute("data-width", requiredWidth);
                         gameContainerDiv.setAttribute("data-height", requiredHeight);
                         gameContainerDiv.style.width = requiredWidth;
                         gameContainerDiv.style.height = requiredHeight;
                     }
-                } else {
-                    // this sets the container to a fixed size and resizing the window does not resize the container, only center it
-                    gameContainerDiv.setAttribute("style", "position: relative; padding: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; overflow: hidden;");
-                    gameContainerDiv.setAttribute("data-width", requiredWidth);
-                    gameContainerDiv.setAttribute("data-height", requiredHeight);
-                    gameContainerDiv.style.width = requiredWidth;
-                    gameContainerDiv.style.height = requiredHeight;
+                    enginesisHost = location.protocol + '//' + enginesisServer;
+                    gameContainerDiv.innerHTML = "<iframe id=\"gameContainer-iframe\" src=\"" + enginesisHost + "/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen scrolling=\"" + allowScroll + "\" width=\"" + requiredWidth + "\" height=\"" + requiredHeight + "\" style=\"position: absolute; top: 0; left: 0; margin: 0; padding: 0; width: 100%; height: 100%; border: 0;\"/>";
                 }
-                enginesisHost = location.protocol + '//' + enginesisServer;
-                gameContainerDiv.innerHTML = "<iframe id=\"gameContainer-iframe\" src=\"" + enginesisHost + "/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen scrolling=\"" + allowScroll + "\" width=\"" + requiredWidth + "\" height=\"" + requiredHeight + "\" style=\"position: absolute; top: 0; left: 0; margin: 0; padding: 0; width: 100%; height: 100%; border: 0;\"/>";
+            }
+        }
+
+        function insertAndExecute(id, text) {
+            document.getElementById(id).innerHTML = text;
+            var scripts = document.getElementById(id).getElementsByTagName("script");
+            for (var i = 0; i < scripts.length; i++) {
+                if (scripts[i].src != "") {
+                    var tag = document.createElement("script");
+                    tag.src = scripts[i].src;
+                    document.getElementsByTagName("head")[0].appendChild(tag);
+                } else {
+                    eval(scripts[i].innerHTML);
+                }
             }
         }
 

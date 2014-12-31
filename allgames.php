@@ -1,6 +1,7 @@
 <?php
 require_once('procs/common.php');
 
+$siteId = 107;
 $search = getPostOrRequestVar('q', '');
 ?>
 <!DOCTYPE html>
@@ -60,6 +61,9 @@ $search = getPostOrRequestVar('q', '');
     <script src="js/head.min.js"></script>
     <script type="text/javascript">
 
+        var enginesisSiteId = <?php echo($siteId);?>,
+            serverStage = "<?php echo($stage);?>";
+
         head.ready(function() {
             initApp();
         });
@@ -73,10 +77,13 @@ $search = getPostOrRequestVar('q', '');
         ga('send', 'pageview');
 
         function initApp() {
-            var searchString = "<?php echo($search);?>";
-            window.EnginesisSession = enginesis(107, 0, 0, '<?php echo($stage);?>', '', '', 'en', enginesisCallBack);
+            var searchString = "<?php echo($search);?>",
+                serverHostDomain = 'jumpydot' + serverStage + '.com';
+
+            document.domain = serverHostDomain;
+            window.EnginesisSession = enginesis(enginesisSiteId, 0, 0, 'enginesis.' + serverHostDomain, '', '', 'en', enginesisCallBack);
             if (searchString != "") {
-                // a search string was give, return games related to that
+                // a search string was given, return games related to that
                 EnginesisSession.gameFind(searchString, null);
             } else {
                 // no search requested, return all games. TODO: we need to setup paging

@@ -72,7 +72,11 @@ $siteId = 107;
         ga('send', 'pageview');
 
         function initApp() {
-            window.EnginesisSession = enginesis(<?php echo($siteId);?>, 0, 0, '-l', '', '', 'en', enginesisCallBack);
+            var serverStage = "<?php echo($stage);?>",
+                serverHostDomain = 'jumpydot' + serverStage + '.com';
+
+            document.domain = serverHostDomain;
+            window.EnginesisSession = enginesis(<?php echo($siteId);?>, 0, 0, 'enginesis.' + serverHostDomain, '', '', 'en', enginesisCallBack);
             EnginesisSession.siteListGamesRandom(21, null);
         }
 

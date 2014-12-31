@@ -65,11 +65,15 @@ $siteId = 107;
         <script type="text/javascript">
 
             var enginesisSiteId = <?php echo($siteId);?>,
+                serverStage = "<?php echo($stage);?>",
                 enginesisGameListId = 6,
                 enginesisHomePagePromoId = 2;
 
             function initApp() {
-                window.EnginesisSession = enginesis(enginesisSiteId, 0, 0, '<?php echo($stage);?>', '', '', 'en', enginesisCallBack);
+                var serverHostDomain = 'jumpydot' + serverStage + '.com';
+
+                document.domain = serverHostDomain;
+                window.EnginesisSession = enginesis(enginesisSiteId, 0, 0, 'enginesis.' + serverHostDomain, '', '', 'en', enginesisCallBack);
                 EnginesisSession.gameListListGames(enginesisGameListId, null);
                 EnginesisSession.promotionItemList(enginesisHomePagePromoId, EnginesisSession.getDateNow(), null);
             }

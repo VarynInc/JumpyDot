@@ -158,7 +158,11 @@ function gameListGamesResponse (results, elementId, maxItems, sortList) {
             }
             countOfGamesShown ++;
             gameImg = baseURL + gameItem.game_name + "/images/300x225.png";
-            gameLink = "/play.php?gameid=" + gameItem.game_id;
+            if (isTouchDevice && gameItem.game_link.indexOf('playbuzz') > 0) {
+                gameLink = "/play.php?gameid=" + gameItem.game_id;
+            } else {
+                gameLink = "/play.php?gameid=" + gameItem.game_id;
+            }
             itemHtml = makeGameModule(gameItem.game_id, gameItem.title, gameItem.short_desc, gameImg, gameLink);
             newDiv = document.createElement('div');
             newDiv.className = "col-sm-6 col-md-4";
