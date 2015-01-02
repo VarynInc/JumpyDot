@@ -872,6 +872,20 @@ span.logotext {
     display: inline-block;
 }
 
+.vimeo {
+    background: url(../images/icn-vimeo.png) no-repeat 0 0;
+    width: 51px;
+    height: 51px;
+    display: inline-block;
+}
+
+.email {
+    background: url(../images/icn-send.png) no-repeat 0 0;
+    width: 51px;
+    height: 51px;
+    display: inline-block;
+}
+
 .sprite {
 	-webkit-transition-duration: 0.2s;
     -moz-transition-duration: 0.2s;

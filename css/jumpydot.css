@@ -175,9 +175,20 @@ footer {
     text-align: center;
 }
 
+.social-game-info {
+    display: inline-block;
+    float: right;
+    text-align: center;
+}
+
 .social ul li {
     display: inline;
     margin: 0 8px 0 8px;
+}
+
+.social-game-info ul li {
+    display: inline;
+    margin: 0 4px 0 4px;
 }
 
 .facebook {
@@ -226,6 +237,48 @@ footer {
     background: url(/images/icn-youtube.png) no-repeat 0 0;
     width: 51px;
     height: 51px;
+    display: inline-block;
+}
+
+.vimeo {
+    background: url(/images/icn-vimeo.png) no-repeat 0 0;
+    width: 51px;
+    height: 51px;
+    display: inline-block;
+}
+
+.email {
+    background: url(/images/icn-send.png) no-repeat 0 0;
+    width: 51px;
+    height: 51px;
+    display: inline-block;
+}
+
+.facebook-small {
+    background: url(/images/icn-facebook-small.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.twitter-small {
+    background: url(/images/icn-twitter-small.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.gplus-small {
+    background: url(/images/icn-gplus-small.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.email-small {
+    background: url(/images/icn-send-small.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
     display: inline-block;
 }
 
