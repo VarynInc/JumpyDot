@@ -23,6 +23,14 @@ define('DB_COLLATE',  '');
 define('WPDB_DRIVER', 'pdo_mysql');
 
 /**#@+
+ * WordPress does not suggest we hard-code the blog Home and SiteURL settings as this overrides what
+ * is set in General Options, but for our case this makes more sense as the site host is determined
+ * by our stage configuration and cannot be hardcoded.
+ */
+define('WP_HOME',     $webServer . '/blog/');
+define('WP_SITEURL',  $webServer . '/blog/');
+
+/**#@+
  * Authentication Unique Keys and Salts.
  *
  * Change these to different unique phrases!

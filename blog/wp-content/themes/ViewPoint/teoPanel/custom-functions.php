@@ -35,6 +35,8 @@ if( !function_exists( 'show_top_menu') )
 {
 	function show_top_menu($option) {
 		global $viewpoint;
+        global $webServer;
+
 		echo '<ul>';
 		if(isset($viewpoint['pages_topmenu']) && $viewpoint['pages_topmenu'] != '' )
 			$pages = get_pages( array('include' => $viewpoint['pages_topmenu'], 'sort_column' => 'menu_order', 'sort_order' => 'ASC') );
@@ -45,7 +47,11 @@ if( !function_exists( 'show_top_menu') )
 		$count = count($pages);
 		for($i = 0; $i < $count / 2; $i++)
 		{
-			echo '<li><a href="' . get_home_url() . '/#' . $pages[$i]->post_name . '">' . $pages[$i]->post_title . '</a></li>' . PHP_EOL;
+            if ($i == 0) {
+                echo '<li><a href="' . $webServer . '/">' . $pages[$i]->post_title . '</a></li>' . PHP_EOL;
+            } else {
+                echo '<li><a href="' . get_home_url() . '/#' . $pages[$i]->post_name . '">' . $pages[$i]->post_title . '</a></li>' . PHP_EOL;
+            }
 		}
 		if($option == 1) echo '<li style="border: 0"><a href="/"><span class="logo"><span class="logotext">' . $viewpoint['logo_text'] . '</span></span></a></li>' . PHP_EOL;
 		for($i = round($count / 2); $i < $count; $i++)

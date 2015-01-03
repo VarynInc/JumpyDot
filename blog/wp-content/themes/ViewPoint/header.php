@@ -8,8 +8,8 @@
 <head>
     <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
     <title><?php wp_title('-');?></title>
-    <link rel="shortcut icon" href="/images/DotIcon16x16.png"/>
-    <link rel="image_src" href="/images/DotLogo155x128.png" />
+    <link rel="shortcut icon" href="/images/JumpyDotBallIcon32x32.png"/>
+    <link rel="image_src" href="/images/JumpyDotLogo500x175.png" />
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
     <!-- Mobile Specific Metas
       ================================================== -->
