@@ -1,23 +1,51 @@
 /**
- * Common JavaScript utility functions
+ * Common JavaScript utility functions used across JumpyDot.com
  *
- * isValidEmail(email) - check if email address looks valid
- * hashWord(word) - produce a hash of an input string
  *
  */
 
+/**
+ * isValidEmail determines if an email address appears to be a valid format
+ * @param email
+ * @returns {boolean}
+ */
 function isValidEmail (email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
 }
 
-function compareTitle(a, b) {
+/**
+ * compareTitle is an array sort function to alphabetize the array by title
+ * @param a
+ * @param b
+ * @returns {number}
+ */
+function compareTitle (a, b) {
     if (a.title < b.title) {
         return -1;
     } else if (a.title > b.title) {
         return 1;
     } else {
         return 0;
+    }
+}
+
+/**
+ * insertAndExecute inserts HTML text into the provided <div id="id"> and if that new HTML includes any script tags they will get evaluated.
+ * @param id: element to insert new HTML text into.
+ * @param text: the new HTML text to insert into id.
+ */
+function insertAndExecute(id, text) {
+    document.getElementById(id).innerHTML = text;
+    var scripts = document.getElementById(id).getElementsByTagName("script");
+    for (var i = 0; i < scripts.length; i++) {
+        if (scripts[i].src != "") {
+            var tag = document.createElement("script");
+            tag.src = scripts[i].src;
+            document.getElementsByTagName("head")[0].appendChild(tag);
+        } else {
+            eval(scripts[i].innerHTML);
+        }
     }
 }
 
@@ -78,6 +106,15 @@ function handleNewsletterServerResponse (succeeded) {
     }
 }
 
+/**
+ * makeGameModule will generate the HTML for a standard game promo module.
+ * @param gameId
+ * @param gameName
+ * @param gameDescription
+ * @param gameImg
+ * @param gameLink
+ * @returns {string} the HTML
+ */
 function makeGameModule (gameId, gameName, gameDescription, gameImg, gameLink) {
     var innerHtml,
         title;
@@ -85,12 +122,23 @@ function makeGameModule (gameId, gameName, gameDescription, gameImg, gameLink) {
     title = "Play " + gameName + " Now!";
     innerHtml = "<div class=\"thumbnail\">";
     innerHtml += "<a href=\"" + gameLink + "\" title=\"" + title + "\"><img class=\"thumbnail-img\" src=\"" + gameImg + "\" alt=\"" + gameName + "\"/></a>";
-    innerHtml += "<div class=\"caption\"><h3>" + gameName + "</h3><p class=\"gamedescription\">" + gameDescription + "</p>";
+    innerHtml += "<div class=\"caption\"><a class=\"gameTitle\" href=\"" + gameLink + "\" title=\"" + title + "\"><h3>" + gameName + "</h3></a><p class=\"gamedescription\">" + gameDescription + "</p>";
     innerHtml += "<p><a href=\"" + gameLink + "\" class=\"btn btn-primary btn-success\" role=\"button\" title=\"" + title + "\" alt=\"" + title + "\">Play Now!</a></p>";
     innerHtml += "</div></div>";
     return innerHtml;
 }
 
+/**
+ * makePromoModule will generate the HTML for a single standard promo module for the carousel.
+ * @param isActive
+ * @param backgroundImg
+ * @param titleText
+ * @param altText
+ * @param promoText
+ * @param link
+ * @param callToActionText
+ * @returns {string}
+ */
 function makePromoModule (isActive, backgroundImg, titleText, altText, promoText, link, callToActionText) {
     var innerHtml,
         isActiveItem;
@@ -109,6 +157,12 @@ function makePromoModule (isActive, backgroundImg, titleText, altText, promoText
     return innerHtml;
 }
 
+/**
+ * makePromoIndicators generates the HTML for all promo indicators used in the carousel.
+ * @param numberOfPromos
+ * @param activeIndicator
+ * @returns {string}
+ */
 function makePromoIndicators (numberOfPromos, activeIndicator) {
     var innerHtml = "<ol class=\"carousel-indicators\">",
         activeClass,
@@ -127,12 +181,17 @@ function makePromoIndicators (numberOfPromos, activeIndicator) {
     return innerHtml;
 }
 
+/**
+ * gameListGamesResponse handles the server reply from GameLisstListGames and generates the game modules.
+ * @param results {object}: the sever response object
+ * @param elementId {string}: element to insert game modules HTML
+ * @param maxItems {int}: no more than this number of games
+ * @param sortList {bool}: true to sort the list of games alphabetically by title
+ */
 function gameListGamesResponse (results, elementId, maxItems, sortList) {
     // results is an array of games
     var i,
         gameItem,
-        gameImg,
-        gameLink,
         gamesContainer = document.getElementById(elementId),
         newDiv,
         itemHtml,
@@ -157,13 +216,7 @@ function gameListGamesResponse (results, elementId, maxItems, sortList) {
                 continue; // only show HTML5 or embed games on touch devices
             }
             countOfGamesShown ++;
-            gameImg = baseURL + gameItem.game_name + "/images/300x225.png";
-            if (isTouchDevice && gameItem.game_link.indexOf('playbuzz') > 0) {
-                gameLink = "/play.php?gameid=" + gameItem.game_id;
-            } else {
-                gameLink = "/play.php?gameid=" + gameItem.game_id;
-            }
-            itemHtml = makeGameModule(gameItem.game_id, gameItem.title, gameItem.short_desc, gameImg, gameLink);
+            itemHtml = makeGameModule(gameItem.game_id, gameItem.title, gameItem.short_desc, baseURL + gameItem.game_name + "/images/300x225.png", "/play.php?gameid=" + gameItem.game_id);
             newDiv = document.createElement('div');
             newDiv.className = "col-sm-6 col-md-4";
             newDiv.innerHTML = itemHtml;

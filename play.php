@@ -23,11 +23,35 @@ $siteId = 107;
 $gameWidth = 1024;
 $gameHeight = 768;
 $gameDescription = '';
+$gameInfo = null;
+$receivedGameInfo = false;
+
+    // get game info: we need the game info immediately in order to build the page
+
+    $response = callEnginesisAPI('GameGet', $enginesisServer . '/index.php', array('site_id' => $siteId, 'game_id' => $gameId, 'response' => 'json'));
+    if ($response != null) {
+        $responseObject = json_decode($response);
+        if ($responseObject != null) {
+            $gameInfo = $responseObject->results->result[0];
+            if ($gameInfo != null) {
+                $receivedGameInfo = true;
+                $gameName = $gameInfo->game_name;
+                $title = $gameInfo->title;
+                $gameImg = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/600x450.png';
+                $gameThumb = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/50x50.png';
+                $gameLink = 'http://www.jumpydot.com/play.php?gameid=' . $gameId;
+                $gameDesc = $gameInfo->short_desc;
+            }
+        }
+    }
+    if ( ! $receivedGameInfo) {
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>JumpyDot: Play. Anywhere.</title>
+    <title><?php echo($title);?> on JumpyDot.com</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -41,12 +65,12 @@ $gameDescription = '';
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="description" content="At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
+    <meta name="description" content="<?php echo($gameDesc);?>">
     <meta name="author" content="JumpyDot">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/carousel.css" rel="stylesheet">
     <link href="/css/jumpydot.css" rel="stylesheet">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="<?php echo($gameThumb);?>">
     <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48"/>
     <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
     <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
@@ -60,23 +84,20 @@ $gameDescription = '';
     <link rel="apple-touch-icon" href="/apple-touch-icon-114x114.png" sizes="114x114"/>
     <link rel="apple-touch-icon" href="/apple-touch-icon-120x120.png" sizes="120x120"/>
     <link rel="apple-touch-icon" href="/apple-touch-icon-152x152.png" sizes="152x152"/>
-    <link rel="shortcut icon" href="/favicon-196x196.png">
+    <link rel="shortcut icon" href="<?php echo($gameThumb);?>">
     <meta property="fb:app_id" content="" />
-    <meta property="og:title" content="JumpyDot: Play. Anywhere.">
-    <meta property="og:url" content="http://www.jumpydot.com">
+    <meta property="og:title" content="<?php echo($title);?> on JumpyDot.com">
+    <meta property="og:url" content="<?php echo($gameLink);?>">
     <meta property="og:site_name" content="JumpyDot">
-    <meta property="og:description" content="At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
-    <meta property="og:image" content="http://www.jumpydot.com/images/1200x900.png"/>
-    <meta property="og:image" content="http://www.jumpydot.com/images/sitelogo-1024.png"/>
-    <meta property="og:image" content="http://www.jumpydot.com/images/1200x600.png"/>
-    <meta property="og:image" content="http://www.jumpydot.com/images/600x600.png"/>
-    <meta property="og:image" content="http://www.jumpydot.com/images/2048x1536.png"/>
+    <meta property="og:description" content="<?php echo($gameDesc);?>">
+    <meta property="og:image" content="<?php echo($gameImg);?>"/>
+    <meta property="og:image" content="<?php echo($gameThumb);?>"/>
     <meta property="og:type" content="game"/>
     <meta name="twitter:card" content="photo"/>
     <meta name="twitter:site" content="@jumpydot"/>
     <meta name="twitter:creator" content="@jumpydot"/>
-    <meta name="twitter:title" content="JumpyDot: Play. Anywhere."/>
-    <meta name="twitter:image:src" content="http://www.jumpydot.com/images/600x600.png"/>
+    <meta name="twitter:title" content="<?php echo($title);?> on JumpyDot.com"/>
+    <meta name="twitter:image:src" content="<?php echo($gameImg);?>"/>
     <meta name="twitter:domain" content="jumpydot.com"/>
     <script src="js/head.min.js"></script>
     <script type="text/javascript">
@@ -129,13 +150,13 @@ $gameDescription = '';
                         handleNewsletterServerResponse(succeeded);
                         break;
                     case "GameGet":
-                    case "GetGameByName":
+                    case "GameGetByName":
                         if (succeeded == 1) {
-                            gameGetResponse(enginesisResponse.results.result[0]);
+                            getGameResponse(enginesisResponse.results.result[0]);
                         } else {
                             setGameErrorMessage(errorMessage);
                         }
-                        EnginesisSession.siteListGamesRandom(21, null);
+                        EnginesisSession.siteListGamesRandom(24, null);
                         break;
                     case "DeveloperGet":
                         setGameDeveloper(enginesisResponse.results.result[0]);
@@ -158,11 +179,9 @@ $gameDescription = '';
             }
         }
 
-        function gameGetResponse (gameData) {
-            // got the game info from Enginesis now fill out the info and setup the iframe
-            EnginesisSession.developerGet(gameData.developer_id);
+        function getGameResponse (gameData) {
             setGameContainer(gameData);
-            setGameInfo(gameData);
+            EnginesisSession.developerGet(<?php echo($gameInfo->developer_id);?>);
         }
 
         function setGameDeveloper (developerInfo) {
@@ -176,34 +195,27 @@ $gameDescription = '';
             }
         }
 
-        function setGameInfo (gameInfo) {
-            var gameInfoDiv = document.getElementById("gameInfo");
-            if (gameInfoDiv != null) {
-                gameInfoDiv.innerHTML = "<h2>" + gameInfo.title + "</h2><p>" + gameInfo.long_desc + "</p>";
-            }
-        }
-
         function setGameContainer (gameData) {
             var gameContainerDiv = document.getElementById("gameContainer"),
                 elementDiv,
                 requiredWidth,
                 requiredHeight,
                 aspectRatio,
-                width = gameData.width,
-                height = gameData.height,
-                bgcolor = gameData.bgcolor,
-                enginesisHost,
-                allowScroll,
+                width = <?php echo($gameInfo->width);?>,
+                height = <?php echo($gameInfo->height);?>,
+                bgcolor = "<?php echo($gameInfo->bgcolor);?>",
+                pluginId = <?php echo($gameInfo->game_plugin_id);?>,
+                allowScroll = "<?php echo($gameInfo->popup == 0 ? 'no' : 'yes');?>",
+                enginesisHost = "<?php echo($enginesisServer);?>",
                 setToFullScreen = false,
                 isTouchDevice = EnginesisSession.isTouchDevice(),
                 isResizable; // only resize HTML5 games
 
             // we want to size the container to the size of the game and center it in the panel div.
 
-            EnginesisSession.gameWidth = parseInt(width);
-            EnginesisSession.gameHeight = parseInt(height);
-            EnginesisSession.gamePluginId = parseInt(gameData.game_plugin_id);
-            allowScroll = parseInt(gameData.popup) == 0 ? "no" : "yes";
+            EnginesisSession.gameWidth = width;
+            EnginesisSession.gameHeight = height;
+            EnginesisSession.gamePluginId = pluginId;
             if (gameContainerDiv != null) {
                 if (isTouchDevice && EnginesisSession.gamePluginId == 9) {
                     // if we are on mobile and this is an Embed type game, just embed the game link directly into the div.
@@ -279,22 +291,7 @@ $gameDescription = '';
                         gameContainerDiv.style.width = requiredWidth;
                         gameContainerDiv.style.height = requiredHeight;
                     }
-                    enginesisHost = location.protocol + '//' + enginesisServer;
                     gameContainerDiv.innerHTML = "<iframe id=\"gameContainer-iframe\" src=\"" + enginesisHost + "/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen scrolling=\"" + allowScroll + "\" width=\"" + requiredWidth + "\" height=\"" + requiredHeight + "\" style=\"position: absolute; top: 0; left: 0; margin: 0; padding: 0; width: 100%; height: 100%; border: 0;\"/>";
-                }
-            }
-        }
-
-        function insertAndExecute(id, text) {
-            document.getElementById(id).innerHTML = text;
-            var scripts = document.getElementById(id).getElementsByTagName("script");
-            for (var i = 0; i < scripts.length; i++) {
-                if (scripts[i].src != "") {
-                    var tag = document.createElement("script");
-                    tag.src = scripts[i].src;
-                    document.getElementsByTagName("head")[0].appendChild(tag);
-                } else {
-                    eval(scripts[i].innerHTML);
                 }
             }
         }
@@ -389,6 +386,17 @@ $gameDescription = '';
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="gameInfo">
+                <?php
+                if ($receivedGameInfo) {
+                    $shareFacebook = '<li><a href="https://www.facebook.com/sharer/sharer.php?u=' . $gameLink . '" target="_blank" title="Share ' . $title . ' with your Facebook network"><div class="facebook-small"></div></a></li>';
+                    $shareGoogle = '<li><a href="https://plus.google.com/share?url=' . $gameLink . '" target="_blank" title="Share ' . $title . ' with your Google Plus circles"><div class="gplus-small"></div></a></li>';
+                    $shareTwitter = '<li><a href="http://twitter.com/share?text=Play ' . $title . ' on JumpyDot.com:&url=' . $gameLink . '&via=jumpydot" target="_blank" title="Share ' . $title . ' with your Twitter followers"><div class="twitter-small"></div></a></li>';
+                    $shareEmail = '<li><a href="mailto:?subject=Check out ' . $title . ' on JumpyDot.com&body=I played ' . $title . ' on JumpyDot.com and thought you would like to check it out: ' . $gameLink . '" title="Share ' . $title . ' by email"><div class="email-small"></div></a></li>';
+                    echo('<div class="social-game-info"><ul>' . $shareFacebook . $shareGoogle . $shareTwitter . $shareEmail . '</ul></div><h2>' . $title . '</h2><p>' . $gameInfo->long_desc . '</p>');
+                } else {
+                    echo('<p>No information regarding your request. Please check your entry.</p>');
+                }
+                ?>
                 </div>
                 <div id="gameDeveloper">
                 </div>
