@@ -71,7 +71,7 @@ require_once('procs/common.php');
         ga('send', 'pageview');
 
         function initApp() {
-            window.EnginesisSession = enginesis(107, 0, 0, '-l', '', '', 'en', enginesisCallBack);
+            window.EnginesisSession = enginesis(<?php echo($siteId);?>, 0, 0, '-l', '', '', 'en', enginesisCallBack);
         }
 
         function showSubscribePopup () {

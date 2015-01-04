@@ -5,7 +5,6 @@ if ($search != null) {
     header('location:/allgames.php?q=' . $search);
     exit;
 }
-$siteId = 107;
 ?>
 <!DOCTYPE html>
 <html lang="en">

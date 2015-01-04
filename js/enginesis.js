@@ -130,7 +130,7 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
             default:
                 // if it was not a stage match assume it is a full host name, find the stage in it if it exists
                 regMatch = /\-[ldqx]\./.exec(newServerStage);
-                if (regMatch.index > 0) {
+                if (regMatch != null && regMatch.index > 0) {
                     serverStage = newServerStage.substr(regMatch.index, 2);
                 } else {
                     serverStage = ''; // anything we do not expect goes to the live instance

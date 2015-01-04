@@ -1,7 +1,6 @@
 <?php
 require_once('procs/common.php');
 
-$siteId = 107;
 $search = getPostOrRequestVar('q', '');
 ?>
 <!DOCTYPE html>

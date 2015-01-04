@@ -1,6 +1,5 @@
 <?php
 require_once('procs/common.php');
-$siteId = 107;
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -227,6 +227,8 @@ function callEnginesisAPI ($fn, $serverURL, $paramArray) {
     return $contents;
 }
 
+// "Global" PHP variables available to all scripts
+$siteId = 107;
 $isLoggedIn = false;
 $server = '';
 $stage = '';

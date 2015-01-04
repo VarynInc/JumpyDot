@@ -19,7 +19,6 @@ if ($gameId == '') {
 if ($gameId == '') {
     $gameId = getPostOrRequestVar('g', '');
 }
-$siteId = 107;
 $gameWidth = 1024;
 $gameHeight = 768;
 $gameDescription = '';
