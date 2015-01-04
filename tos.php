@@ -119,7 +119,7 @@ require_once('procs/common.php');
                 <h5>No Unlawful or Prohibited Use</h5>
                 <p>As a condition of your use of the web site, you will not use the web site for any purpose that is unlawful or prohibited by these terms, conditions, and notices. You may not use the Services in any manner that could damage, disable, overburden, or impair any Jumpy Dot server, or the network(s) connected to any Jumpy Dot server, or interfere with any other party's use and enjoyment of the web site You may not attempt to gain unauthorized access to services, materials, other accounts, computer systems or networks connected to any Jumpy Dot server or to the web site, through hacking, password mining or any other means. You may not obtain or attempt to obtain any materials or information through any means not intentionally made available through the web site.</p>
                 <h5>Copyright and Trademark Information</h5>
-                <p>COPYRIGHT NOTICE: Copyright &copy; 2014 Jumpy Dot, LLC., All Rights Reserved.</p>
+                <p>COPYRIGHT NOTICE: Copyright &copy; 2015 Jumpy Dot, LLC., All Rights Reserved.</p>
                 <p>Third-party trademarks are used solely for distributing the games herein and no license or affiliation is implied. All copyrights are held by the respective owners.</p>
             </div>
         </div>
@@ -153,7 +153,7 @@ require_once('procs/common.php');
                         <li><a href="/blog/#our-team">About</a></li>
                     </ul>
                 </div>
-                <p class="copyright small text-center">Copyright &copy; 2014 Jumpy Dot, LLC</p>
+                <p class="copyright small text-center">Copyright &copy; 2015 Jumpy Dot, LLC</p>
             </div>
         </div>
     </footer>

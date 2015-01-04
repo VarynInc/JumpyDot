@@ -296,7 +296,7 @@ require_once('procs/common.php');
                         <li><a href="/blog/#our-team">About</a></li>
                     </ul>
                 </div>
-                <p class="copyright small text-center">Copyright &copy; 2014 Jumpy Dot, LLC</p>
+                <p class="copyright small text-center">Copyright &copy; 2015 Jumpy Dot, LLC</p>
             </div>
         </div>
     </footer>

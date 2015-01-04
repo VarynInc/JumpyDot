@@ -142,7 +142,7 @@ get_header(); ?>
         </div> <!-- end container -->
             
         <div class="copyright">
-            <p>Copyright &copy; 2014 <?php echo bloginfo('name');?> <?php _e('All rights reserved', 'ViewPoint');?>. <?php _e('Powered by ', 'ViewPoint');?> <a href="http://wordpress.org">WordPress</a>, <?php _e('designed by', 'ViewPoint');?> <a href="http://teothemes.com">TeoThemes</a></p>
+            <p>Copyright &copy; 2015 <?php echo bloginfo('name');?> <?php _e('All rights reserved', 'ViewPoint');?>. </p>
         </div> <!-- end copyright -->
             
     </div> <!-- end contact -->

@@ -183,7 +183,7 @@
         </section>
     </div>
     <footer>
-        <p class="copyright">Copyright &copy; 2014 <a href="https://twitter.com/jumpydot">JumpyDot</a></p>
+        <p class="copyright">Copyright &copy; 2015 <a href="https://twitter.com/jumpydot">JumpyDot</a></p>
     </footer>
 <script type="text/javascript">
     var _gaq = _gaq || [];
