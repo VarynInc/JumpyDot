@@ -122,8 +122,8 @@ function makeGameModule (gameId, gameName, gameDescription, gameImg, gameLink) {
     title = "Play " + gameName + " Now!";
     innerHtml = "<div class=\"thumbnail\">";
     innerHtml += "<a href=\"" + gameLink + "\" title=\"" + title + "\"><img class=\"thumbnail-img\" src=\"" + gameImg + "\" alt=\"" + gameName + "\"/></a>";
+    innerHtml += "<div class=\"gameModuleInfo\"><a href=\"" + gameLink + "\" class=\"btn btn-md btn-success\" role=\"button\" title=\"" + title + "\" alt=\"" + title + "\">Play Now!</a></div>";
     innerHtml += "<div class=\"caption\"><a class=\"gameTitle\" href=\"" + gameLink + "\" title=\"" + title + "\"><h3>" + gameName + "</h3></a><p class=\"gamedescription\">" + gameDescription + "</p>";
-    innerHtml += "<p><a href=\"" + gameLink + "\" class=\"btn btn-primary btn-success\" role=\"button\" title=\"" + title + "\" alt=\"" + title + "\">Play Now!</a></p>";
     innerHtml += "</div></div>";
     return innerHtml;
 }

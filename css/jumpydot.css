@@ -38,12 +38,22 @@ body {
     padding-bottom: 0;
 }
 
+.carousel-caption h3 {
+    display: none;
+}
+
 .sliderContainer {
     height: 250px;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+}
+
+.sliderCaption {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+    border-radius: 8px;
 }
 
 .thumbnail-img {
@@ -156,8 +166,27 @@ body {
     color: #ac676d;
 }
 
+.gameTitle {
+    color: #303030;
+    text-decoration: none;
+    margin-top: 0;
+}
+
+a.gameTitle:hover {
+    text-decoration: none;
+}
+
+.gameTitle h3 {
+    margin-top: 0;
+}
+
 .gamedescription {
     min-height: 80px;
+}
+
+.gameModuleInfo {
+    padding-left: 10px;
+    padding-top: 8px;
 }
 
 footer {
@@ -325,11 +354,11 @@ footer {
     color: #303030;
 }
 
-.gameTitle {
-    color: #303030;
-    text-decoration: none;
-}
-
-a.gameTitle:hover {
-    text-decoration: none;
+.btn-md,
+.btn-group-md > .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.33;
+    border-radius: 4px;
 }

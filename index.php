@@ -179,8 +179,8 @@ if ($search != null) {
           background-size:cover;">
                     <div class="carousel-caption">
                       <h3>Welcome to JumpyDot!</h3>
-                      <p>We aim for content that is fun for all ages and performs on the most popular platforms. Check back for updates. Follow us!</p>
-                      <p><a class="btn btn-lg btn-primary" href="JavaScript:showSubscribePopup();" role="button">Sign up now</a></p>
+                      <p class="sliderCaption">Welcome to JumpyDot! We aim for content that is fun for all ages and performs on the most popular platforms. Check back for updates. Follow us!</p>
+                      <p><a class="btn btn-md btn-success" href="JavaScript:showSubscribePopup();" role="button">Sign up now</a></p>
                     </div>
                   </div>
                 </div>
@@ -189,18 +189,18 @@ if ($search != null) {
           background-size:cover;">
                     <div class="carousel-caption">
                       <h3>Match Master 3000</h3>
-                      <p>A match game like no other: 8 different play patterns organized into a quest for the Match Master crown.</p>
-                      <p><a class="btn btn-lg btn-primary" href="/play.php?gameid=MatchMaster3000" role="button">Play Now &gt;</a></p>
+                      <p class="sliderCaption">A match game like no other: 8 different play patterns organized into a quest for the Match Master crown.</p>
+                      <p><a class="btn btn-md btn-success" href="/play.php?gameid=MatchMaster3000" role="button">Play Now &gt;</a></p>
                     </div>
                   </div>
                 </div>
                 <div class="item">
-                  <div class="sliderContainer" style="background:url(/images/promos/RealHousewivesPromoHome.jpg) center center;
+                  <div class="sliderContainer" style="background:url(/images/promos/TopChefPromoHome.jpg) center center;
           background-size:cover;">
                     <div class="carousel-caption">
-                      <h3>Real Housewives Memory Challenge</h3>
-                      <p>A true Housewife never forgets so test your recall skills with a 'Real' memory challenge!</p>
-                      <p><a class="btn btn-lg btn-primary" href="http://www.bravotv.com/the-real-housewives-memory-challenge" role="button">Play Now &gt;</a></p>
+                      <h3>Top Chef Memory Challenge</h3>
+                      <p class="sliderCaption">A Top Chef knows the recipe for success. Test your skills in the ultimate memory challenge.</p>
+                      <p><a class="btn btn-md btn-success" href="http://www.bravotv.com/the-real-housewives-memory-challenge" role="button">Play Now &gt;</a></p>
                     </div>
                   </div>
                 </div>
@@ -209,8 +209,8 @@ if ($search != null) {
           background-size:cover;">
                           <div class="carousel-caption">
                               <h3>Blog Post:</h3>
-                              <p>Fresh Crops and Free Content: How the “Chipotle Scarecrow” App Broke Ground</p>
-                              <p><a class="btn btn-lg btn-primary" href="/blog/?p=83" role="button">More &gt;</a></p>
+                              <p class="sliderCaption">Blog Post: Fresh Crops and Free Content: How the “Chipotle Scarecrow” App Broke Ground</p>
+                              <p><a class="btn btn-md btn-success" href="/blog/?p=83" role="button">More &gt;</a></p>
                           </div>
                       </div>
                   </div>
