@@ -175,40 +175,40 @@ if ($search != null) {
               </ol>
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <img src="/images/promos/JumpyDotPromoHome.jpg" alt="Welcome to JumpyDot!">
-                  <div class="container">
+                  <div class="sliderContainer" style="background:url(/images/promos/JumpyDotPromoHome.jpg) center center;
+          background-size:cover;">
                     <div class="carousel-caption">
-                      <h1>Welcome to JumpyDot!</h1>
+                      <h3>Welcome to JumpyDot!</h3>
                       <p>We aim for content that is fun for all ages and performs on the most popular platforms. Check back for updates. Follow us!</p>
                       <p><a class="btn btn-lg btn-primary" href="JavaScript:showSubscribePopup();" role="button">Sign up now</a></p>
                     </div>
                   </div>
                 </div>
                 <div class="item">
-                  <img src="/images/promos/MatchMasterPromoHome.png" alt="Match Master 3000 - card matching game">
-                  <div class="container">
+                  <div class="sliderContainer" style="background:url(/images/promos/MatchMasterPromoHome.jpg) center center;
+          background-size:cover;">
                     <div class="carousel-caption">
-                      <h1>Match Master 3000</h1>
+                      <h3>Match Master 3000</h3>
                       <p>A match game like no other: 8 different play patterns organized into a quest for the Match Master crown.</p>
                       <p><a class="btn btn-lg btn-primary" href="/play.php?gameid=MatchMaster3000" role="button">Play Now &gt;</a></p>
                     </div>
                   </div>
                 </div>
                 <div class="item">
-                  <img src="/images/promos/RealHousewivesPromoHome.png" alt="Real Housewives Memory Challenge">
-                  <div class="container">
+                  <div class="sliderContainer" style="background:url(/images/promos/RealHousewivesPromoHome.jpg) center center;
+          background-size:cover;">
                     <div class="carousel-caption">
-                      <h1>Real Housewives Memory Challenge</h1>
+                      <h3>Real Housewives Memory Challenge</h3>
                       <p>A true Housewife never forgets so test your recall skills with a 'Real' memory challenge!</p>
                       <p><a class="btn btn-lg btn-primary" href="http://www.bravotv.com/the-real-housewives-memory-challenge" role="button">Play Now &gt;</a></p>
                     </div>
                   </div>
                 </div>
                   <div class="item">
-                      <img src="/images/promos/Blog1PromoHome.png" alt="JumpyDot blog post Chipotle Scarecrow">
-                      <div class="container">
+                      <div class="sliderContainer" style="background:url(/images/promos/Blog1PromoHome.jpg) center center;
+          background-size:cover;">
                           <div class="carousel-caption">
-                              <h1>Blog Post:</h1>
+                              <h3>Blog Post:</h3>
                               <p>Fresh Crops and Free Content: How the “Chipotle Scarecrow” App Broke Ground</p>
                               <p><a class="btn btn-lg btn-primary" href="/blog/?p=83" role="button">More &gt;</a></p>
                           </div>
