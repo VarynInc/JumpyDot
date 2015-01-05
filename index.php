@@ -200,7 +200,7 @@ if ($search != null) {
                     <div class="carousel-caption">
                       <h3>Top Chef Memory Challenge</h3>
                       <p class="sliderCaption">A Top Chef knows the recipe for success. Test your skills in the ultimate memory challenge.</p>
-                      <p><a class="btn btn-md btn-success" href="http://www.bravotv.com/the-real-housewives-memory-challenge" role="button">Play Now &gt;</a></p>
+                      <p><a class="btn btn-md btn-success" href="http://www.bravotv.com/media/games/top-chef-memory-challenge/index.html" role="button">Play Now &gt;</a></p>
                     </div>
                   </div>
                 </div>
