@@ -55,13 +55,13 @@ require_once('procs/common.php');
     <meta name="twitter:title" content="JumpyDot: Play. Anywhere."/>
     <meta name="twitter:image:src" content="http://www.jumpydot.com/images/600x600.png"/>
     <meta name="twitter:domain" content="jumpydot.com"/>
-    <script src="js/head.min.js"></script>
+    <script src="/js/head.min.js"></script>
     <script type="text/javascript">
 
         head.ready(function() {
             initApp();
         });
-        head.js("js/modernizr.custom.74056.js", "/js/jquery.min.js", "/js/bootstrap.min.js", "/js/ie10-viewport-bug-workaround.js", "/js/common.js", "/js/enginesis.js", "/js/ShareHelper.js");
+        head.js("/js/modernizr.custom.74056.js", "/js/jquery.min.js", "/js/bootstrap.min.js", "/js/ie10-viewport-bug-workaround.js", "/js/common.js", "/js/enginesis.js", "/js/ShareHelper.js");
 
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
