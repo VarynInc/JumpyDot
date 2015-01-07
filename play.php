@@ -19,6 +19,9 @@ if ($gameId == '') {
 if ($gameId == '') {
     $gameId = getPostOrRequestVar('g', '');
 }
+if ($gameId == '') {
+    header("Location: /allgames.php");
+}
 $gameWidth = 1024;
 $gameHeight = 768;
 $gameDescription = '';
@@ -31,15 +34,19 @@ $receivedGameInfo = false;
     if ($response != null) {
         $responseObject = json_decode($response);
         if ($responseObject != null) {
-            $gameInfo = $responseObject->results->result[0];
-            if ($gameInfo != null) {
-                $receivedGameInfo = true;
-                $gameName = $gameInfo->game_name;
-                $title = $gameInfo->title;
-                $gameImg = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/600x450.png';
-                $gameThumb = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/50x50.png';
-                $gameLink = 'http://www.jumpydot.com/play.php?gameid=' . $gameId;
-                $gameDesc = $gameInfo->short_desc;
+            if ($responseObject->results->status->success == '0') {
+                header("Location: /missing.php");
+            } else {
+                $gameInfo = $responseObject->results->result[0];
+                if ($gameInfo != null) {
+                    $receivedGameInfo = true;
+                    $gameName = $gameInfo->game_name;
+                    $title = $gameInfo->title;
+                    $gameImg = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/600x450.png';
+                    $gameThumb = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/50x50.png';
+                    $gameLink = 'http://www.jumpydot.com/play.php?gameid=' . $gameId;
+                    $gameDesc = $gameInfo->short_desc;
+                }
             }
         }
     }
