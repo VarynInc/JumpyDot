@@ -29,6 +29,7 @@ $gameInfo = null;
 $receivedGameInfo = false;
 
     // get game info: we need the game info immediately in order to build the page
+    // TODO: GameGet only works for numeric game_id, if game name we need to call GameGetByName
 
     $response = callEnginesisAPI('GameGet', $enginesisServer . '/index.php', array('site_id' => $siteId, 'game_id' => $gameId, 'response' => 'json'));
     if ($response != null) {
@@ -36,6 +37,7 @@ $receivedGameInfo = false;
         if ($responseObject != null) {
             if ($responseObject->results->status->success == '0') {
                 header("Location: /missing.php");
+                exit(0);
             } else {
                 $gameInfo = $responseObject->results->result[0];
                 if ($gameInfo != null) {
@@ -45,14 +47,18 @@ $receivedGameInfo = false;
                     $gameImg = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/600x450.png';
                     $gameThumb = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/50x50.png';
                     $gameLink = 'http://www.jumpydot.com/play.php?gameid=' . $gameId;
+                    $gameOGLink = 'http://www.jumpydot.com/play/' . $gameId;
                     $gameDesc = $gameInfo->short_desc;
                 }
             }
         }
     }
     if ( ! $receivedGameInfo) {
-
+        header("Location: /missing.php");
+        exit(0);
     }
+
+    // TODO: Setup Facebook app and add     <heta property="fb:app_id" content="###" />
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,9 +97,8 @@ $receivedGameInfo = false;
     <link rel="apple-touch-icon" href="/apple-touch-icon-120x120.png" sizes="120x120"/>
     <link rel="apple-touch-icon" href="/apple-touch-icon-152x152.png" sizes="152x152"/>
     <link rel="shortcut icon" href="<?php echo($gameThumb);?>">
-    <meta property="fb:app_id" content="" />
     <meta property="og:title" content="<?php echo($title);?> on JumpyDot.com">
-    <meta property="og:url" content="<?php echo($gameLink);?>">
+    <meta property="og:url" content="<?php echo($gameOGLink);?>">
     <meta property="og:site_name" content="JumpyDot">
     <meta property="og:description" content="<?php echo($gameDesc);?>">
     <meta property="og:image" content="<?php echo($gameImg);?>"/>
