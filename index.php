@@ -177,7 +177,6 @@ $showSubscribe = getPostOrRequestVar('s', '0');
                   <li data-target="#PromoCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#PromoCarousel" data-slide-to="1"></li>
                   <li data-target="#PromoCarousel" data-slide-to="2"></li>
-                  <li data-target="#PromoCarousel" data-slide-to="3"></li>
               </ol>
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
@@ -210,16 +209,6 @@ $showSubscribe = getPostOrRequestVar('s', '0');
                     </div>
                   </div>
                 </div>
-                  <div class="item">
-                      <div class="sliderContainer" style="background:url(/images/promos/Blog1PromoHome.jpg) center center;
-          background-size:cover;">
-                          <div class="carousel-caption">
-                              <h3>Blog Post:</h3>
-                              <p class="sliderCaption">Blog Post: Fresh Crops and Free Content: How the “Chipotle Scarecrow” App Broke Ground</p>
-                              <p><a class="btn btn-md btn-danger" href="/blog/?p=83" role="button">More &gt;</a></p>
-                          </div>
-                      </div>
-                  </div>
               </div>
               <a class="left carousel-control" href="#PromoCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
