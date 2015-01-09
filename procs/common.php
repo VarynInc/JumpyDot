@@ -227,6 +227,32 @@ function callEnginesisAPI ($fn, $serverURL, $paramArray) {
     return $contents;
 }
 
+    /**
+     * processTrackBack: process a possible track back request when a page loads.
+     * @param e: the event we are tracking, such as "Clicked Logo". While these are arbitrary, we should try to use the same value for the same event across all pages.
+     * @param u: the anonymous userId who generated the event.
+     * @param: i: which newsletter this event came from.
+     *
+     * This data gets recorded in the database to be processed later.
+     *
+     */
+    function processTrackBack () {
+        global $enginesisServer;
+        $event = getPostOrRequestVar('e', '');
+        $userId = getPostOrRequestVar('u', '');
+        $newsletterId = getPostOrRequestVar('i', '');
+        if ($event != '' && $userId != '' && $newsletterId != '') {
+            if (isset($_SERVER['HTTP_REFERER'])) {
+                $url = parse_url($_SERVER['HTTP_REFERER']);
+                $referrer = $url['host'];
+            } else {
+                $referrer = 'jumpydot.com';
+            }
+            $params = array('u_id' => $userId, 'newsletter_id' => $newsletterId, 'event_id' => $event, 'event_details' => '', 'referrer' => $referrer);
+            callEnginesisAPI('NewsletterTrackingRecord', $enginesisServer, $params);
+        }
+    }
+
 // "Global" PHP variables available to all scripts
 $siteId = 107;
 $isLoggedIn = false;

@@ -1,6 +1,7 @@
 <?php
 require_once('procs/common.php');
 
+processTrackBack();
 $search = getPostOrRequestVar('q', '');
 ?>
 <!DOCTYPE html>

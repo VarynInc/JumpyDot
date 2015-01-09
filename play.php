@@ -1,5 +1,6 @@
 <?php
 require_once('procs/common.php');
+processTrackBack();
 $gameId = getPostOrRequestVar('id', '');
 if ($gameId == '') {
     $gameId = getPostOrRequestVar('gameid', '');
@@ -399,7 +400,7 @@ $receivedGameInfo = false;
                 <div id="gameInfo">
                 <?php
                 if ($receivedGameInfo) {
-                    $shareFacebook = '<li><a href="https://www.facebook.com/sharer/sharer.php?u=' . $gameLink . '" target="_blank" title="Share ' . $title . ' with your Facebook network"><div class="facebook-small"></div></a></li>';
+                    $shareFacebook = '<li><a href="https://www.facebook.com/sharer/sharer.php?u=' . $gameOGLink . '" target="_blank" title="Share ' . $title . ' with your Facebook network"><div class="facebook-small"></div></a></li>';
                     $shareGoogle = '<li><a href="https://plus.google.com/share?url=' . $gameLink . '" target="_blank" title="Share ' . $title . ' with your Google Plus circles"><div class="gplus-small"></div></a></li>';
                     $shareTwitter = '<li><a href="http://twitter.com/share?text=Play ' . $title . ' on JumpyDot.com:&url=' . $gameLink . '&via=jumpydot" target="_blank" title="Share ' . $title . ' with your Twitter followers"><div class="twitter-small"></div></a></li>';
                     $shareEmail = '<li><a href="mailto:?subject=Check out ' . $title . ' on JumpyDot.com&body=I played ' . $title . ' on JumpyDot.com and thought you would like to check it out: ' . $gameLink . '" title="Share ' . $title . ' by email"><div class="email-small"></div></a></li>';

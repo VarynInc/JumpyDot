@@ -5,6 +5,8 @@ if ($search != null) {
     header('location:/allgames.php?q=' . $search);
     exit;
 }
+processTrackBack();
+$showSubscribe = getPostOrRequestVar('s', '0');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,12 +71,16 @@ if ($search != null) {
                 enginesisHomePagePromoId = 2;
 
             function initApp() {
-                var serverHostDomain = 'jumpydot' + serverStage + '.com';
+                var serverHostDomain = 'jumpydot' + serverStage + '.com',
+                    showSubscribe = '<?php echo($showSubscribe);?>';
 
                 document.domain = serverHostDomain;
                 window.EnginesisSession = enginesis(enginesisSiteId, 0, 0, 'enginesis.' + serverHostDomain, '', '', 'en', enginesisCallBack);
                 EnginesisSession.gameListListGames(enginesisGameListId, null);
                 EnginesisSession.promotionItemList(enginesisHomePagePromoId, EnginesisSession.getDateNow(), null);
+                if (showSubscribe == '1') {
+                    showSubscribePopup();
+                }
             }
 
             function enginesisCallBack (enginesisResponse) {
