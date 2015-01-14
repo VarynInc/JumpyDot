@@ -184,7 +184,7 @@ $showSubscribe = getPostOrRequestVar('s', '0');
           background-size:cover;">
                     <div class="carousel-caption">
                       <h3>Welcome to JumpyDot!</h3>
-                      <p class="sliderCaption">Welcome to JumpyDot! We aim for content that is fun for all ages and performs on the most popular platforms. Check back for updates. Follow us!</p>
+                      <p class="sliderCaption">Welcome to JumpyDot! We have games for all ages and the most popular platforms. Follow us for updates.</p>
                       <p><a class="btn btn-md btn-danger" href="JavaScript:showSubscribePopup();" role="button">Sign up now</a></p>
                     </div>
                   </div>
