@@ -15,6 +15,38 @@ function isValidEmail (email) {
 }
 
 /**
+ * determine full extent of the window available to the application
+ * Extra Warning: this function must be global (on window object)
+ * @returns {object}
+ */
+function getDocumentSize () {
+    // return {width: window.innerWidth, height: window.innerHeight};
+    return {width: document.documentElement.clientWidth, height: document.documentElement.clientHeight};
+}
+
+/**
+ * setElementSizeAndColor of DOM element
+ * @param DOM element
+ * @param requiredWidth
+ * @param requiredHeight
+ * @param bgcolor
+ */
+function setElementSizeAndColor (elementDiv, requiredWidth, requiredHeight, bgcolor) {
+    elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
+}
+
+function checkChildLayout (elementDiv) {
+    var i,
+        e,
+        childNodes = elementDiv.children;
+
+    for (i = 0; i < childNodes.length; i ++) {
+        e = childNodes[i];
+        console.log(elementDiv.name + ": Child " + e.name + " (" + e.style.width + "," + e.style.height + ")");
+    }
+}
+
+/**
  * compareTitle is an array sort function to alphabetize the array by title
  * @param a
  * @param b

@@ -127,10 +127,6 @@ $receivedGameInfo = false;
         ga('create', 'UA-57520503-1', 'auto');
         ga('send', 'pageview');
 
-        function getDocumentSize () {
-            return {width: window.innerWidth, height: window.innerHeight};
-        }
-
         function initApp() {
             var gameId = "<?php echo($gameId);?>",
                 serverStage = "<?php echo($stage);?>",
@@ -145,9 +141,9 @@ $receivedGameInfo = false;
                 EnginesisSession.gameGetByName(gameId);
             }
             if (EnginesisSession.isTouchDevice()) {
-                window.addEventListener('orientationchange', setFrameSize, false);
+                window.addEventListener('orientationchange', setGameFrameSize, false);
             }
-            window.addEventListener('resize', setFrameSize, false);
+            window.addEventListener('resize', setGameFrameSize, false);
         }
 
         function enginesisCallBack (enginesisResponse) {
@@ -221,7 +217,9 @@ $receivedGameInfo = false;
                 enginesisHost = "<?php echo($enginesisServer);?>",
                 setToFullScreen = false,
                 isTouchDevice = EnginesisSession.isTouchDevice(),
-                isResizable; // only resize HTML5 games
+                isResizable, // only resize HTML5 games
+                hideTheseElements,
+                unwantedElement;
 
             // we want to size the container to the size of the game and center it in the panel div.
 
@@ -244,8 +242,7 @@ $receivedGameInfo = false;
 
                             // the container is too small to fit the game so we are going to make the game take up the entire available window. Game is responsible for resizing itself in the available window.
 
-                            var hideTheseElements = ['playgame-navbar', 'playgame-InfoPanel', 'playgame-BottomPanel'],
-                                unwantedElement;
+                            hideTheseElements = ['playgame-navbar', 'playgame-InfoPanel', 'playgame-BottomPanel'];
 
                             for (unwantedElement in hideTheseElements) {
                                 elementDiv = document.getElementById(hideTheseElements[unwantedElement]);
@@ -260,10 +257,8 @@ $receivedGameInfo = false;
                             gameContainerDiv.setAttribute("data-height", requiredHeight);
                             gameContainerDiv.style.width = "100%";
                             gameContainerDiv.style.height = "100%";
-                            elementDiv = document.getElementById("topContainer");
-                            elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
-                            elementDiv = document.body;
-                            elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
+                            setElementSizeAndColor(document.body, requiredWidth, requiredHeight, bgcolor);
+                            setElementSizeAndColor(document.getElementById("topContainer"), requiredWidth, requiredHeight, bgcolor);
                         } else {
 
                             // resize the game to the smaller of width or height, but honor its aspect ratio. Game is responsible for resizing itself in the available window.
@@ -295,6 +290,7 @@ $receivedGameInfo = false;
                             gameContainerDiv.style.width = requiredWidth;
                             gameContainerDiv.style.height = requiredHeight;
                         }
+                        checkChildLayout(document.body);
                     } else {
                         // this sets the container to a fixed size and resizing the window does not resize the container, only center it
                         gameContainerDiv.setAttribute("style", "position: relative; padding: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; overflow: hidden;");
@@ -308,9 +304,9 @@ $receivedGameInfo = false;
             }
         }
 
-        function setFrameSize () {
+        function setGameFrameSize () {
 
-            // setFrameSize is called only after a resize event. Resize container only if we have to.
+            // setGameFrameSize is called only after a resize event. Resize container only if we have to.
 
             var gameContainerDiv = document.getElementById("gameContainer"),
                 isResizable = EnginesisSession.gamePluginId == 10, // only resize HTML5 games
@@ -360,7 +356,7 @@ $receivedGameInfo = false;
         </div>
     </div>
 </div>
-<div  id="playgame-navbar" class="navbar-wrapper">
+<div id="playgame-navbar" class="navbar-wrapper">
     <div class="container">
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
@@ -394,7 +390,7 @@ $receivedGameInfo = false;
 <div id="topContainer" class="container top-promo-area">
     <div id="gameContainer" class="row">
     </div>
-    <div  id="playgame-InfoPanel" class="row">
+    <div id="playgame-InfoPanel" class="row">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="gameInfo">
