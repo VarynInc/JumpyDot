@@ -106,18 +106,136 @@ require_once('procs/common.php');
 <div class="container marketing">
     <div class="row">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h1>Press</h1>
-                <p>This document holds links, assets, and information relevant to press coverage related to Jumpy Dot.</p>
-                <h3>Jumpy Dot Logo</h3>
-                <p>Our logo has two forms, the full image logo and the ball logo:</p>
-                <ul style="list-style-type: none;">
-                    <li><a href="images/JumpyDotLogo1000x351.png"><img src="images/JumpyDotLogo200x70.png"/></a></li><br/><br/>
-                    <li><a href="images/JumpyDotBallIcon350x350.png"><img src="images/JumpyDotBallIcon48x48.png"/></a></li>
-                </ul>
-                <h3>Media contacts</h3>
-                <p>Email our press team at: <a href="mailto:info@jumpydot.com">info@jumpydot.com</a>. If your communication is regarding a non-business matter it may not receive a reply.</p>
-                <p>For all other inquiries, please visit our Help Center or email <a href="mailto:support@jumpydot.com">support@jumpydot.com</a>.</p>
+            <div class="menubar col-sm-3 col-md-3 sidebar">
+                <div class="menu section">
+                    <ul class="nav nav-sidebar">
+                        <li id="root-item" class="level-0">
+                            <ul class="level-1" id="root-list">
+                                <li id="company-name-item" class="level-1"><a id="company-name-link" class="level-1" href="/blog/#our-team">Jumpy Dot</a>
+                                    <ul class="level-2" id="company-name-list">
+                                        <li id="company-name-factsheet-item" class="level-2"><a id="company-name-factsheet-link" href="#company-name-factsheet" class="level-2">Factsheet</a></li>
+                                        <li id="company-name-description-item" class="level-2"><a id="company-name-description-link" href="#company-name-description" class="level-2">Description</a></li>
+                                        <li id="company-name-history-item" class="level-2"><a id="company-name-history-link" href="#company-name-history" class="level-2">History</a></li>
+                                        <li id="company-name-projects-item" class="level-2"><a id="company-name-projects-link" href="#company-name-projects" class="level-2">Projects</a></li>
+                                        <li id="company-name-videos-item" class="level-2"><a id="company-name-videos-link" href="#company-name-videos" class="level-2">Videos</a></li>
+                                        <li id="company-name-logo-icon-item" class="level-2"><a id="company-name-images-link" href="#company-name-images" class="level-2">Images, Logo &amp; Icon</a></li>
+                                        <!-- <li id="company-name-awards-recognition-item" class="level-2"><a id="company-name-awards-recognition-link" href="#company-name-awards-recognition" class="level-2">Awards &amp; Recognition</a></li> -->
+                                        <li id="company-name-selected-articles-item" class="level-2"><a id="company-name-selected-articles-link" href="#company-name-selected-articles" class="level-2">Selected Articles</a></li>
+                                        <li id="company-name-additional-links-item" class="level-2"><a id="company-name-additional-links-link" href="#company-name-additional-links" class="level-2">Additional Links</a></li>
+                                        <li id="company-name-team-item" class="level-2"><a id="company-name-team-link" href="#company-name-team" class="level-2">Team &amp; Contacts</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div role='content' class='content'>
+                <div role="content" class="content col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
+                    <h1 id="company-name" class="col-md-12"><img src="/images/JumpyDotLogo500x175.png" width="343" height="120" alt="Jumpy Dot"></h1>
+                    <div id="factsheet" class="col-md-4">
+                        <h2 id="company-name-factsheet">Factsheet</h2>
+                        <p><strong>Developer:</strong><br>Jumpy Dot, LLC</p>
+                        <p><strong>Founding date:</strong><br>July 1, 2013</p>
+                        <p><strong>Website:</strong><br><a href="http://jumpydot.com" title="Jumpy Dot">JumpyDot.com</a></p>
+                        <p><strong>Press / Business contact:</strong><br><a href="mailto:info@jumpydot.com">info@jumpydot.com</a></p>
+                        <p><strong>Social:</strong><br><a href="https://twitter.com/jumpydot">twitter.com/jumpydot</a><br>
+                            <a href="https://facebook.com/jumpydot">facebook.com/jumpydot</a><br>
+                            <a href="callto:jumpydot">JumpyDot</a></p>
+                        <p><strong>Releases:</strong><br><a href="projects/exampleproject/">exampleproject</a></p>
+                        <p><strong>Address:</strong><br>TBA</p>
+                        <p><strong>Phone:</strong><br>TBA</p>
+                    </div>
+                    <div class="col-md-8">
+                        <div id="description">
+                            <h2 id="company-name-description">Description</h2>
+                            <p>Jumpy Dot was founded in 2013 by games and digital media industry veterans Dan Hart and John Foster.
+                                Jumpy Dot is a New York based game developer focused on mobile and online development for select partners and directly to consumers.</p>
+                            <p>Jumpy Dot believes in making games with high production value using familiar mechanics with twists that intrigue and delight players. They intend to make games with respect for our players that
+                             provide value over the long term.</p>
+                            <p>Jumpy Dots founders have been building online games as long as the consumer Internet has been around with the believe that while technologies advance, good play mechanics, well coded game engines, strong GUI, and great art succeed every time.</p>
+                        </div>
+                        <div id="history">
+                            <h2 id="company-name-history">History</h2>
+                            <h3 id="company-name-history-beginning">Beginning</h3>
+                            <p>We met while Dan was at Yahoo and John was at Skyworks. We collaborated on two of the earliest try-and-buy games: bowling and golf. These games were a huge success on Yahoo.</p>
+                            <p>Dan moved to NY and began an new online gaming venture at Viacom, hiring John's team to build Reno 911 Texas Hold'em Poker for Comedy Central. Afterward John joined Dan's team at MTV to help
+                            build the MTV Networks online games platform, games microsites, and cutting edge online and multiplayer games.</p>
+                            <p>In 2013 they joined forces again to for Jumpy Dot.</p>
+                            <h3 id="company-name-history-currentg">Current</h3>
+                            <p>At Jumpy Dot the first game was a memory match game build with HTML5. The game was successful branded and deployed at Bravo for the Real Housewives and Top Chef franchises.</p>
+                            <p>They continue to innovate with mobile and browser-based games.</p>
+                        </div>
+                        <div id="projects">
+                            <h2 id="company-name-projects">Projects</h2>
+                            <ul>
+                                <li><a href="projects/exampleproject/">Real Housewives Memory Challenge</a></li>
+                                <li><a href="projects/exampleproject/">Top Chef Memory Challenge</a></li>
+                                <li><a href="projects/exampleproject/">Match Master 3000</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="videos" class="col-md-12">
+                        <h2 id="company-name-videos">Videos</h2>
+                        <p>Sumo Volleyball was a game we acquired at MTV and then turned into several branded games. <a href="https://www.youtube.com/watch?v=919x4FClpVA" title="Sumo Volleyball Trailer on Youtube"> Here is a trailer of someone who is quite good at the game. It brings back such great memories!</a></p>
+                        <div class="iframe-container">
+                            <iframe src="//www.youtube.com/embed/919x4FClpVA" frameborder="0" allowfullscreen=""></iframe>
+                        </div>
+                        <p><br></p>
+                        <p>Candystand Minigolf was a great game, beloved by many players around the world. <a href="https://www.youtube.com/watch?v=a_9bCHVNbIQ" title="Candystand Minigold recap"> I put a lot of my life into this building game.</a></p>
+                        <div class="iframe-container">
+                            <iframe src="//www.youtube.com/embed/a_9bCHVNbIQ" frameborder="0" allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                    <div id="images" class="col-md-12">
+                        <h2 id="company-name-images">Images</h2>
+                        <p>download all screenshots &amp; photos as <strong> <a href="assets/images/images.zip" title="Images zip">.zip (63 KB)</a> </strong></p>
+                        <p><a href="assets/images/image_01.png"><img src="assets/images/image_01.png" alt="image_01_name"></a>
+                            <a href="assets/images/image_02.png"><img src="assets/images/image_02.png" alt="image_02_name"></a>
+                            <a href="assets/images/image_03.png"><img src="assets/images/image_03.png" alt="image_03_name"></a>
+                            <a href="assets/images/image_04.png"><img src="assets/images/image_04.png" alt="image_04_name"></a></p></div><div id="logo-icon" class="col-md-12"><h2 id="company-name-logo-icon">Logo &amp; Icon</h2><p>download logo files as <strong> <a href="assets/images/logo.zip" title="Logo &amp; Icon zip">.zip (7 KB)</a> </strong></p><p><a href="assets/images/logo.png" title="Logo"><img src="assets/images/logo.png" alt="logo"></a>
+                            <a href="assets/images/icon.png" title="Icon"><img src="assets/images/icon.png" alt="icon"></a>
+                        </p>
+                    </div>
+                    <!-- <div id="awards-recognition" class="col-md-12">
+                        <h2 id="company-name-awards-recognition">Awards &amp; Recognition</h2>
+                        <blockquote>
+                            <ul>
+                                <li>“Winner, XX awards.” - <em>game name, December 13, 2013</em></li>
+                                <li>“Nominee, YY awards.” - <em>game name, December 13, 2013</em></li>
+                            </ul>
+                        </blockquote>
+                    </div> -->
+                    <div id="selected-articles" class="col-md-12">
+                        <h2 id="company-name-selected-articles">Selected Articles</h2>
+                        <blockquote>
+                            <ul>
+                                <li>“Quote quote quote.”<br>— <em>Person Name, <a href="http://www.website.com/">Website</a></em></li>
+                            </ul>
+                            <ul>
+                                <li>“More quotes.”<br>— <em>Person name, <a href="http://geocities.blog.com/">Site</a></em></li>
+                            </ul>
+                        </blockquote>
+                    </div>
+                    <div id="additional-links" class="col-md-12">
+                        <h2 id="company-name-additional-links">Additional Links</h2>
+                        <p><strong>Play Our Games!</strong><br>We host a unique collection of playable games, interactive content, contests and sweepstakes <a href="https://www.jumpydot.com">here</a>.</p>
+                        <p><strong>Games Blog</strong><br>We are always blogging about trends and musings in the games industry <a href="https://www.jumpydot.com/blog/">here</a>.</p>
+                    </div>
+                    <div id="team-repeating-collaborator" class="col-md-6">
+                        <h2 id="company-name-team">Team</h2>
+                        <p><strong>Dan Hart</strong><br><a href="https://link">Founder</a></p>
+                        <p><strong>John Foster</strong><br><a href="https://link">Founder</a></p>
+                        <p><strong>Elyse Fischer</strong><br><a href="https://link">Education Specialist</a></p>
+                    </div>
+                    <div id="contact" class="col-md-6">
+                        <h2 id="company-name-contact">Contact</h2>
+                        <p><strong>Inquiries</strong><br><a href="mailto:info@jumpydot.com">info@jumpydot.com</a></p>
+                        <p><strong>Twitter</strong><br><a href="https://twitter.com/jumpydot">twitter.com/jumpydot</a></p>
+                        <p><strong>Facebook</strong><br><a href="https://facebook.com/jumpydot">facebook.com/jumpydot</a></p>
+                        <p><strong>Web</strong><br><a href="http://jumpydot.com" title="Jumpy Dot">jumpydot.com</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
