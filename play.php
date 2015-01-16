@@ -140,10 +140,10 @@ $receivedGameInfo = false;
             } else {
                 EnginesisSession.gameGetByName(gameId);
             }
-            if (EnginesisSession.isTouchDevice()) {
-                window.addEventListener('orientationchange', setGameFrameSize, false);
-            }
-            // window.addEventListener('resize', setGameFrameSize, false);
+//            if (EnginesisSession.isTouchDevice()) {
+//                window.addEventListener('orientationchange', setGameFrameSize, false);
+//            }
+//            window.addEventListener('resize', setGameFrameSize, false);
         }
 
         function enginesisCallBack (enginesisResponse) {
@@ -319,7 +319,7 @@ $receivedGameInfo = false;
             requiredAspectRatio = EnginesisSession.gameAspectRatio;
             newWidth = gameContainerDiv.clientWidth; // HACK: All up to the full browser width even if it looks ugly
             newHeight = gameContainerDiv.clientHeight;
-            if (isResizable && (newWidth <= requiredWidth || newHeight <= requiredHeight)) {
+            if (isResizable && (newWidth < requiredWidth || newHeight < requiredHeight)) {
                 if (isTouchDevice) {
                     // If we are on a small mobile device then make the game take the entire screen.
                     // The container is too small to fit the game so we are going to make the game take up the entire available window.
@@ -355,13 +355,13 @@ $receivedGameInfo = false;
                 gameContainerDiv.setAttribute("data-width", requiredWidth);
                 gameContainerDiv.setAttribute("data-height", requiredHeight);
                 gameContainerDiv.style.width = requiredWidth;
-                gameContainerDiv.style.height = requiredWidth;
+                gameContainerDiv.style.height = requiredHeight;
                 console.log("JumpyDot setGameFrameSize to restored (" + requiredWidth + ", " + requiredHeight + ")");
             }
             gameContainerDiv = document.getElementById("gameContainer-iframe");
             if (gameContainerDiv != null) {
                 gameContainerDiv.style.width = requiredWidth;
-                gameContainerDiv.style.height = requiredWidth;
+                gameContainerDiv.style.height = requiredHeight;
             }
         }
 
