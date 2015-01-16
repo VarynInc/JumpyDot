@@ -20,8 +20,19 @@ function isValidEmail (email) {
  * @returns {object}
  */
 function getDocumentSize () {
-    // return {width: window.innerWidth, height: window.innerHeight};
-    return {width: document.documentElement.clientWidth, height: document.documentElement.clientHeight};
+    var gameContainerDiv = document.getElementById("gameContainer"),
+        result = {fullWidth: document.documentElement.clientWidth, fullHeight: document.documentElement.clientHeight};
+
+    if (gameContainerDiv != null) {
+        result.containerWidth = gameContainerDiv.clientWidth;
+        result.containerHeight = gameContainerDiv.clientHeight;
+    }
+    if (EnginesisSession != null) {
+        result.gameWidth = EnginesisSession.gameWidth;
+        result.gameHeight = EnginesisSession.gameHeight;
+        result.gameAspectRatio = EnginesisSession.gameAspectRatio;
+    }
+    return result;
 }
 
 /**
