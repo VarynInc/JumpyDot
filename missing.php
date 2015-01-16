@@ -79,54 +79,6 @@ require_once('procs/common.php');
             EnginesisSession.siteListGamesRandom(21, null);
         }
 
-        function showSubscribePopup () {
-            var popup = document.getElementById("popupScrim"),
-                subscribeFrame = document.getElementById("popupFrame");
-
-            if (popup != null && subscribeFrame != null) {
-                popup.style.display = 'block';
-                subscribeFrame.style.display = 'block';
-            }
-        }
-
-        function hideSubscribePopup () {
-            var popup = document.getElementById("popupScrim"),
-                subscribeFrame = document.getElementById("popupFrame");
-
-            if (popup != null && subscribeFrame != null) {
-                popup.style.display = 'none';
-                subscribeFrame.style.display = 'none';
-            }
-        }
-
-        function setPopupMessage (message, className) {
-            var messageElement = document.getElementById("popupMessageArea"),
-                messageArea = document.getElementById("popupMessageResponse");
-            if (messageElement != null && messageArea != null) {
-                messageElement.style.display = 'block';
-                messageArea.style.display = 'block';
-                messageArea.innerText = message;
-                if (className != null) {
-                    messageArea.className = className;
-                }
-            }
-        }
-
-        function popupCloseClicked () {
-            hideSubscribePopup();
-            setPopupMessage("", "popupMessageResponseOK");
-        }
-
-        function popupSubscribeClicked () {
-            var email = document.getElementById("emailInput").value;
-            if (isValidEmail(email)) {
-                setPopupMessage("Subscribing " + email + " with the server...", "popupMessageResponseOK");
-                EnginesisSession.newsletterAddressAssign(email, '', '', '2', null); // the newsletter category id for JumpyDot/General is 2
-            } else {
-                setPopupMessage("Your email " + email + " looks bad. Can you try again?", "popupMessageResponseError");
-            }
-        }
-
         function enginesisCallBack (enginesisResponse) {
             var succeeded,
                 errorMessage;

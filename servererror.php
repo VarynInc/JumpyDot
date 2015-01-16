@@ -1,5 +1,5 @@
 <?php
-require_once('procs/common.php');
+    require_once('procs/common.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,59 +67,16 @@ require_once('procs/common.php');
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-55025061-1', 'auto');
+        ga('create', 'UA-57520503-1', 'auto');
         ga('send', 'pageview');
 
         function initApp() {
-            window.EnginesisSession = enginesis(<?php echo($siteId);?>, 0, 0, '-l', '', '', 'en', enginesisCallBack);
-        }
+            var serverStage = "<?php echo($stage);?>",
+                serverHostDomain = 'jumpydot' + serverStage + '.com';
 
-        function showSubscribePopup () {
-            var popup = document.getElementById("popupScrim"),
-                subscribeFrame = document.getElementById("popupFrame");
-
-            if (popup != null && subscribeFrame != null) {
-                popup.style.display = 'block';
-                subscribeFrame.style.display = 'block';
-            }
-        }
-
-        function hideSubscribePopup () {
-            var popup = document.getElementById("popupScrim"),
-                subscribeFrame = document.getElementById("popupFrame");
-
-            if (popup != null && subscribeFrame != null) {
-                popup.style.display = 'none';
-                subscribeFrame.style.display = 'none';
-            }
-        }
-
-        function setPopupMessage (message, className) {
-            var messageElement = document.getElementById("popupMessageArea"),
-                messageArea = document.getElementById("popupMessageResponse");
-            if (messageElement != null && messageArea != null) {
-                messageElement.style.display = 'block';
-                messageArea.style.display = 'block';
-                messageArea.innerText = message;
-                if (className != null) {
-                    messageArea.className = className;
-                }
-            }
-        }
-
-        function popupCloseClicked () {
-            hideSubscribePopup();
-            setPopupMessage("", "popupMessageResponseOK");
-        }
-
-        function popupSubscribeClicked () {
-            var email = document.getElementById("emailInput").value;
-            if (isValidEmail(email)) {
-                setPopupMessage("Subscribing " + email + " with the server...", "popupMessageResponseOK");
-                EnginesisSession.newsletterAddressAssign(email, '', '', '2', null); // the newsletter category id for JumpyDot/General is 2
-            } else {
-                setPopupMessage("Your email " + email + " looks bad. Can you try again?", "popupMessageResponseError");
-            }
+            document.domain = serverHostDomain;
+            window.EnginesisSession = enginesis(<?php echo($siteId);?>, 0, 0, 'enginesis.' + serverHostDomain, '', '', 'en', enginesisCallBack);
+            EnginesisSession.siteListGamesRandom(21, null);
         }
 
         function enginesisCallBack (enginesisResponse) {
@@ -136,6 +93,11 @@ require_once('procs/common.php');
                             window.setTimeout(hideSubscribePopup, 2000);
                         } else {
                             setPopupMessage("Server reports an error: " + errorMessage, "popupMessageResponseError");
+                        }
+                        break;
+                    case "SiteListGamesRandom":
+                        if (succeeded == 1) {
+                            gameListGamesResponse(enginesisResponse.results.result, "MissingPageGamesArea", 9, false);
                         }
                         break;
                     default:
@@ -199,73 +161,28 @@ require_once('procs/common.php');
             <p>Something went wrong and our code could not handle your request. It could be a bug or it could be a system fault. We should check our logs soon.</p>
             <p>Please feel free to try again, but if the issue persists then give us some time to fix the error. If you like please send us an email explaining what you did so we can expedite our corrective action.</p>
         </div><!-- /.Missing -->
-        <div id="ad300" class="ad300 col-sm-4 col-md-2">
-            <p id="ad300-subtitle" class="text-center"><small>Advertisement</small></p>
+        <div id="ad300" class="col-sm-4 col-md-2">
+            <div id="boxAd300" class="ad300">
+                <iframe src="<?php echo($webServer);?>/common/ad300.html" frameborder="0" scrolling="no" style="width: 300px; height: 250px; overflow: hidden; z-index: 9999; left: 0px; bottom: 0px; display: inline-block;"></iframe>
+            </div>
+            <p id="ad300-subtitle" class="text-right"><small>Advertisement</small></p>
         </div>
     </div><!-- row -->
 </div><!-- /.carousel -->
 <div class="container marketing">
-    <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/closestToThePin/promo-1.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Closest to the Pin</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/zamBeeZee/promo-zambeezee.jpg" alt="Game Title">
-                <div class="caption">
-                    <h3>Zam BeeZee</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/MatchMaster3000/promo-matchmaster.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Match Master 3000</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/RealHousewivesMemoryChallenge/promo-rh.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Real Housewives Memory Challenge</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/stacker/promo-stacker.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Awards Stacker</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img class="thumbnail-img" src="/games/closestToThePin/promo-1.png" alt="Game Title">
-                <div class="caption">
-                    <h3>Game Title</h3>
-                    <p>This is the description of the game, why we like it, why you should like it, and most importantly why you should play it right now. Get to it!</p>
-                    <p><a href="#" class="btn btn-primary btn-success" role="button">Play Now!</a></p>
-                </div>
-            </div>
-        </div>
+    <div id="MissingPageGamesArea" class="row">
+    </div>
+    <div id="bottomAd" class="row">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- JumpyDot Responsive -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9118730651662049"
+             data-ad-slot="5571172619"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
     <hr/>
     <footer>

@@ -400,7 +400,7 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
         },
 
         siteListGames: function(firstItem, numItems, gameStatusId, overRideCallBackFunction) {
-            // return a list of all games assigned to the site in title order
+            // return a list of all assets assigned to the site in title order
             if (firstItem == null || firstItem < 0) {
                 firstItem = 1;
             }

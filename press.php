@@ -120,7 +120,7 @@ require_once('procs/common.php');
                                         <li id="company-name-videos-item" class="level-2"><a id="company-name-videos-link" href="#company-name-videos" class="level-2">Videos</a></li>
                                         <li id="company-name-logo-icon-item" class="level-2"><a id="company-name-images-link" href="#company-name-images" class="level-2">Images, Logo &amp; Icon</a></li>
                                         <!-- <li id="company-name-awards-recognition-item" class="level-2"><a id="company-name-awards-recognition-link" href="#company-name-awards-recognition" class="level-2">Awards &amp; Recognition</a></li> -->
-                                        <li id="company-name-selected-articles-item" class="level-2"><a id="company-name-selected-articles-link" href="#company-name-selected-articles" class="level-2">Selected Articles</a></li>
+                                        <li id="company-name-selected-articles-item" class="level-2"><a id="company-name-selected-articles-link" href="#company-name-selected-articles" class="level-2">Articles &amp; Quotes</a></li>
                                         <li id="company-name-additional-links-item" class="level-2"><a id="company-name-additional-links-link" href="#company-name-additional-links" class="level-2">Additional Links</a></li>
                                         <li id="company-name-team-item" class="level-2"><a id="company-name-team-link" href="#company-name-team" class="level-2">Team &amp; Contacts</a></li>
                                     </ul>
@@ -189,12 +189,17 @@ require_once('procs/common.php');
                     </div>
                     <div id="images" class="col-md-12">
                         <h2 id="company-name-images">Images</h2>
-                        <p>download all screenshots &amp; photos as <strong> <a href="assets/images/images.zip" title="Images zip">.zip (63 KB)</a> </strong></p>
-                        <p><a href="assets/images/image_01.png"><img src="assets/images/image_01.png" alt="image_01_name"></a>
-                            <a href="assets/images/image_02.png"><img src="assets/images/image_02.png" alt="image_02_name"></a>
-                            <a href="assets/images/image_03.png"><img src="assets/images/image_03.png" alt="image_03_name"></a>
-                            <a href="assets/images/image_04.png"><img src="assets/images/image_04.png" alt="image_04_name"></a></p></div><div id="logo-icon" class="col-md-12"><h2 id="company-name-logo-icon">Logo &amp; Icon</h2><p>download logo files as <strong> <a href="assets/images/logo.zip" title="Logo &amp; Icon zip">.zip (7 KB)</a> </strong></p><p><a href="assets/images/logo.png" title="Logo"><img src="assets/images/logo.png" alt="logo"></a>
-                            <a href="assets/images/icon.png" title="Icon"><img src="assets/images/icon.png" alt="icon"></a>
+                        <p>Download all screenshots &amp; photos as <strong> <a href="/images/press-images.zip" title="Press Images archive">.zip (660 KB)</a> </strong></p>
+                        <p><a href="/assets/MatchMaster3000/ss1-640x477.jpg"><img src="/assets/MatchMaster3000/ss1-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                            <a href="/assets/MatchMaster3000/ss2-640x477.jpg"><img src="/assets/MatchMaster3000/ss2-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                            <a href="/assets/MatchMaster3000/ss3-640x477.jpg"><img src="/assets/MatchMaster3000/ss3-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                            <a href="/assets/MatchMaster3000/ss5-640x477.jpg"><img src="/assets/MatchMaster3000/ss5-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                        </p>
+                    </div>
+                    <div id="logo-icon" class="col-md-12">
+                        <h2 id="company-name-logo-icon">Logo &amp; Icon</h2><p>Download logo files as <strong> <a href="/images/press-logo.zip" title="Logo &amp; Icon zip archive">.zip (637 KB)</a> </strong></p>
+                            <p><a href="/images/JumpyDotLogo250x88.png" title="Logo"><img src="/images/JumpyDotLogo250x88.png" alt="logo"></a>
+                            <a href="/images/JumpyDotBallIcon250x250.png" title="Icon"><img src="/images/JumpyDotBallIcon250x250.png" alt="icon"></a>
                         </p>
                     </div>
                     <!-- <div id="awards-recognition" class="col-md-12">
@@ -207,20 +212,20 @@ require_once('procs/common.php');
                         </blockquote>
                     </div> -->
                     <div id="selected-articles" class="col-md-12">
-                        <h2 id="company-name-selected-articles">Selected Articles</h2>
+                        <h2 id="company-name-selected-articles">Selected Articles &amp; Quotes</h2>
                         <blockquote>
                             <ul>
-                                <li>“Quote quote quote.”<br>— <em>Person Name, <a href="http://www.website.com/">Website</a></em></li>
+                                <li>“Incremental innovation can reinvent a well-worn play pattern.”<br>— <em>Dan Hart, <a href="http://www.gameballmedia.com/candy-crush-saga-the-king-of-casual-games/">Game Ball Media blog</a></em></li>
                             </ul>
                             <ul>
-                                <li>“More quotes.”<br>— <em>Person name, <a href="http://geocities.blog.com/">Site</a></em></li>
+                                <li>“Whether HTML5 is the future of gaming remains to be determined, but we know Flash has lost its momentum.”<br>— <em>John Foster, <a href="http://varyn.com/blog">Varyn Blog</a></em></li>
                             </ul>
                         </blockquote>
                     </div>
                     <div id="additional-links" class="col-md-12">
                         <h2 id="company-name-additional-links">Additional Links</h2>
-                        <p><strong>Play Our Games!</strong><br>We host a unique collection of playable games, interactive content, contests and sweepstakes <a href="https://www.jumpydot.com">here</a>.</p>
-                        <p><strong>Games Blog</strong><br>We are always blogging about trends and musings in the games industry <a href="https://www.jumpydot.com/blog/">here</a>.</p>
+                        <p><h5><a href="https://www.jumpydot.com" title="JumpyDot games website">Play Our Games!</a></h5>We host a unique collection of playable games, interactive content, contests, and sweepstakes <a href="https://www.jumpydot.com" title="JumpyDot games website">here</a>.</p>
+                        <p><h5><a href="https://www.jumpydot.com/blog/?page_id=48" title="Jumpy Dot blog">Games Blog</a></h5>We are blogging about trends and musings in the games industry <a href="https://www.jumpydot.com/blog/?page_id=48" title="Jumpy Dot blog">here</a>.</p>
                     </div>
                     <div id="team-repeating-collaborator" class="col-md-6">
                         <h2 id="company-name-team">Team</h2>
