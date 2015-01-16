@@ -32,17 +32,29 @@ function getDocumentSize () {
  * @param bgcolor
  */
 function setElementSizeAndColor (elementDiv, requiredWidth, requiredHeight, bgcolor) {
-    elementDiv.setAttribute("style", "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; background-color: " + bgcolor + "; min-height: " + requiredHeight + "px !important; overflow: hidden;");
+    var style = "margin: 0; padding: 0; left: 0; top: 0; width: " + requiredWidth + "px; height: " + requiredHeight + "px; min-height: " + requiredHeight + "px !important; overflow: hidden;";
+    if (bgcolor != null && bgcolor != "") {
+        style += " background-color: " + bgcolor + ";";
+    }
+    elementDiv.setAttribute("style", style);
 }
 
 function checkChildLayout (elementDiv) {
     var i,
         e,
+        nodeName,
         childNodes = elementDiv.children;
 
     for (i = 0; i < childNodes.length; i ++) {
         e = childNodes[i];
-        console.log(elementDiv.name + ": Child " + e.name + " (" + e.style.width + "," + e.style.height + ")");
+        if (e.name != null) {
+            nodeName = e.name;
+        } else if (e.id != null) {
+            nodeName = e.id;
+        } else {
+            nodeName = e.localName;
+        }
+        console.log(elementDiv.localName + ": Child " + nodeName + " (" + e.style.width + "," + e.style.height + ")");
     }
 }
 

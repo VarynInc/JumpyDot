@@ -345,10 +345,21 @@ footer {
 
 #gameContainer {
     display: block;
-    width: 50%;
+    position: relative;
+    padding: 0 0 56.5% 0;
     margin: 0 auto;
-    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     text-align: center;
+}
+
+#gameContainer-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .panel-body {
