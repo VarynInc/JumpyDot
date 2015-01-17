@@ -296,7 +296,11 @@ $receivedGameInfo = false;
                         gameContainerDiv.style.height = requiredHeight;
                     }
                     if (EnginesisSession.gamePluginId == 10) {
-                        gameLink = enginesisHost + "/games/" + gameData.game_name + "/" + gameData.game_link;
+                        if (gameData.game_link.indexOf('://') > 0) {
+                            gameLink = gameData.game_link;
+                        } else {
+                            gameLink = enginesisHost + "/games/" + gameData.game_name + "/" + gameData.game_link;
+                        }
                     } else {
                         gameLink = enginesisHost + "/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>";
                     }
