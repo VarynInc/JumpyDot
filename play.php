@@ -225,6 +225,7 @@ $receivedGameInfo = false;
 
         function setGameContainer (gameData) {
             var gameContainerDiv = document.getElementById("gameContainer"),
+                gameLink,
                 requiredWidth,
                 requiredHeight,
                 requiredAspectRatio,
@@ -294,7 +295,12 @@ $receivedGameInfo = false;
                         gameContainerDiv.style.width = requiredWidth;
                         gameContainerDiv.style.height = requiredHeight;
                     }
-                    gameContainerDiv.innerHTML = "<iframe id=\"gameContainer-iframe\" src=\"" + enginesisHost + "/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>\" allowfullscreen scrolling=\"" + allowScroll + "\" />";
+                    if (EnginesisSession.gamePluginId == 10) {
+                        gameLink = enginesisHost + "/games/" + gameData.game_name + "/" + gameData.game_link;
+                    } else {
+                        gameLink = enginesisHost + "/games/play.php?site_id=<?php echo($siteId);?>&game_id=<?php echo($gameId);?>";
+                    }
+                    gameContainerDiv.innerHTML = "<iframe id=\"gameContainer-iframe\" src=\"" + gameLink + "\" allowfullscreen scrolling=\"" + allowScroll + "\" />";
                     gameContainerDiv.style.paddingTop = (requiredAspectRatio * 100) + "px";
                 }
             }
