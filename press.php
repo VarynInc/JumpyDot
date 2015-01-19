@@ -187,19 +187,19 @@ require_once('procs/common.php');
                             <iframe src="//www.youtube.com/embed/a_9bCHVNbIQ" frameborder="0" allowfullscreen=""></iframe>
                         </div>
                     </div>
-                    <div id="images" class="col-md-12">
+                    <div id="images" class="container-fluid col-md-12">
                         <h2 id="company-name-images">Images</h2>
                         <p>Download all screenshots &amp; photos as <strong> <a href="/images/press-images.zip" title="Press Images archive">.zip (660 KB)</a> </strong></p>
-                        <p><a href="/assets/MatchMaster3000/ss1-640x477.jpg"><img src="/assets/MatchMaster3000/ss1-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
-                            <a href="/assets/MatchMaster3000/ss2-640x477.jpg"><img src="/assets/MatchMaster3000/ss2-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
-                            <a href="/assets/MatchMaster3000/ss3-640x477.jpg"><img src="/assets/MatchMaster3000/ss3-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
-                            <a href="/assets/MatchMaster3000/ss5-640x477.jpg"><img src="/assets/MatchMaster3000/ss5-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                        <p><a href="/assets/MatchMaster3000/ss1-640x477.jpg"><img class="img-responsive img-thumbnail" src="/assets/MatchMaster3000/ss1-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                            <a href="/assets/MatchMaster3000/ss2-640x477.jpg"><img class="img-responsive img-thumbnail" src="/assets/MatchMaster3000/ss2-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                            <a href="/assets/MatchMaster3000/ss3-640x477.jpg"><img class="img-responsive img-thumbnail" src="/assets/MatchMaster3000/ss3-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
+                            <a href="/assets/MatchMaster3000/ss5-640x477.jpg"><img class="img-responsive img-thumbnail" src="/assets/MatchMaster3000/ss5-640x477.jpg" alt="Match Master 3000" width="367" height="274"></a>
                         </p>
                     </div>
                     <div id="logo-icon" class="col-md-12">
                         <h2 id="company-name-logo-icon">Logo &amp; Icon</h2><p>Download logo files as <strong> <a href="/images/press-logo.zip" title="Logo &amp; Icon zip archive">.zip (637 KB)</a> </strong></p>
-                            <p><a href="/images/JumpyDotLogo250x88.png" title="Logo"><img src="/images/JumpyDotLogo250x88.png" alt="logo"></a>
-                            <a href="/images/JumpyDotBallIcon250x250.png" title="Icon"><img src="/images/JumpyDotBallIcon250x250.png" alt="icon"></a>
+                            <p><a href="/images/JumpyDotLogo250x88.png" title="Logo"><img class="img-responsive img-thumbnail" src="/images/JumpyDotLogo250x88.png" alt="logo"></a>
+                            <a href="/images/JumpyDotBallIcon250x250.png" title="Icon"><img class="img-responsive img-thumbnail" src="/images/JumpyDotBallIcon250x250.png" alt="icon"></a>
                         </p>
                     </div>
                     <!-- <div id="awards-recognition" class="col-md-12">
