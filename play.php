@@ -302,10 +302,12 @@ $receivedGameInfo = false;
             EnginesisSession.gamePluginId = pluginId;
             if (gameContainerDiv != null) {
                 embedOnTouchDevice = isTouchDevice && EnginesisSession.gamePluginId == 9;
-                if (embedOnTouchDevice) {
+                if (EnginesisSession.gamePluginId == 9) {
                     // if we are on mobile and this is an Embed type game, just embed the game link directly into the div.
                     gameContainerDiv.style.overflow = "scroll";
-                    showOnlyTheGame(true);
+                    if (isTouchDevice) {
+                        showOnlyTheGame(true);
+                    }
                     insertAndExecute("gameContainer", gameData.game_link);
                 } else {
                     if (EnginesisSession.gamePluginId == 10) {
