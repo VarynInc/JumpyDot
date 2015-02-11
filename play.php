@@ -34,7 +34,11 @@ $isPlayBuzzSpecialCase = false;
     // get game info: we need the game info immediately in order to build the page
     // TODO: GameGet only works for numeric game_id, if game name we need to call GameGetByName
 
-    $response = callEnginesisAPI('GameGet', $enginesisServer . '/index.php', array('site_id' => $siteId, 'game_id' => $gameId, 'response' => 'json'));
+    if (is_numeric($gameId)) {
+        $response = callEnginesisAPI('GameGet', $enginesisServer . '/index.php', array('site_id' => $siteId, 'game_id' => $gameId, 'response' => 'json'));
+    } else {
+        $response = callEnginesisAPI('GameGetByName', $enginesisServer . '/index.php', array('site_id' => $siteId, 'game_name' => $gameId, 'response' => 'json'));
+    }
     if ($response != null) {
         $responseObject = json_decode($response);
         if ($responseObject != null) {
@@ -45,6 +49,7 @@ $isPlayBuzzSpecialCase = false;
                 $gameInfo = $responseObject->results->result[0];
                 if ($gameInfo != null) {
                     $receivedGameInfo = true;
+                    $gameId = $gameInfo->game_id;
                     $gameName = $gameInfo->game_name;
                     $title = $gameInfo->title;
                     $gameImg = 'http://enginesis.jumpydot.com/games/' . $gameName . '/images/600x450.png';
