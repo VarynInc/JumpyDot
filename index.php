@@ -51,7 +51,7 @@ $showSubscribe = getPostOrRequestVar('s', '0');
         <meta property="og:site_name" content="JumpyDot">
         <meta property="og:description" content="At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
         <meta property="og:image" content="http://www.jumpydot.com/images/1200x900.png"/>
-        <meta property="og:image" content="http://www.jumpydot.com/images/sitelogo-1024.png"/>
+        <meta property="og:image" content="http://www.jumpydot.com/images/1024.png"/>
         <meta property="og:image" content="http://www.jumpydot.com/images/1200x600.png"/>
         <meta property="og:image" content="http://www.jumpydot.com/images/600x600.png"/>
         <meta property="og:image" content="http://www.jumpydot.com/images/2048x1536.png"/>

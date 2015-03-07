@@ -105,14 +105,19 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
 
     var convertParamsToFormData = function (parameterObject)
     {
-        var key;
-        var formDataObject = new FormData();
+        var key,
+            formDataObject = new FormData();
+
         for (key in parameterObject) {
             if (parameterObject.hasOwnProperty(key)) {
                 formDataObject.append(key, parameterObject[key]);
             }
         }
         return formDataObject;
+    };
+
+    var setProtocolFromCurrentLocation = function () {
+        useHTTPS = document.location.protocol == 'https:';
     };
 
     var qualifyAndSetServerStage = function (newServerStage) {
@@ -166,6 +171,7 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
     };
 
     setPlatform();
+    setProtocolFromCurrentLocation();
     qualifyAndSetServerStage(enginesisServerStage);
 
     // =====================================================================
@@ -196,6 +202,20 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
             return serverStage;
         },
 
+        /**
+         * @method: useHTTPS
+         * @purpose: get and/or set the use HTTPS flag, allowing the caller to force the protocol. By default we set
+         *           useHTTPS from the current document location. This allows the caller to query it and override its value.
+         * @param: {bool} useHTTPSFlag should be either true to force https or false to force http, or undefined to leave it as is
+         * @returns: {bool} the current state of the useHTTPS flag.
+         */
+        useHTTPS: function (useHTTPSFlag) {
+            if (useHTTPSFlag !== undefined) {
+                useHTTPS = useHTTPSFlag ? true : false; // force boolean conversion of flag in case we get some value other than true/false
+            }
+            return useHTTPS;
+        },
+
         serverBaseUrlGet: function () {
             return serverHost;
         },
@@ -222,6 +242,10 @@ var enginesis = function (siteId, gameId, gameGroupId, enginesisServerStage, _au
 
         siteIdSet: function (newSiteId) {
             return siteId = newSiteId;
+        },
+
+        getGameImageURL: function (gameName, width, height) {
+            return (useHTTPS ? 'https://' : 'http://') + serverHost + '/games/' + gameName + '/images/' + width + "x" + height + ".png";
         },
 
         getDateNow: function () {
