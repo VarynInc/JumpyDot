@@ -184,6 +184,19 @@ function makeGameModule (gameId, gameName, gameDescription, gameImg, gameLink) {
 }
 
 /**
+ * makeAdModule will generate the HTML for a standard ad module.
+ * @param: {string} webServer to load the ad iframe HTML
+ * @returns {string} the HTML
+ */
+function makeAdModule () {
+    var innerHtml;
+
+    innerHtml = '<div class="thumbnail"><div class="row"><div id="ad300" class="col-sm-4 col-md-2"><div id="boxAd300" class="ad300x412">';
+    innerHtml += '<iframe src="/common/adModule.html" frameborder="0" scrolling="no" style="width: 300px; height: 412px; overflow: hidden; z-index: 9999; left: 0px; bottom: 0px; display: inline-block;"></iframe></div></div></div></div>';
+    return innerHtml;
+}
+
+/**
  * makePromoModule will generate the HTML for a single standard promo module for the carousel.
  * @param isActive
  * @param backgroundImg
@@ -237,7 +250,7 @@ function makePromoIndicators (numberOfPromos, activeIndicator) {
 }
 
 /**
- * gameListGamesResponse handles the server reply from GameLisstListGames and generates the game modules.
+ * gameListGamesResponse handles the server reply from GameListListGames and generates the game modules.
  * @param results {object}: the sever response object
  * @param elementId {string}: element to insert game modules HTML
  * @param maxItems {int}: no more than this number of games
@@ -246,13 +259,16 @@ function makePromoIndicators (numberOfPromos, activeIndicator) {
 function gameListGamesResponse (results, elementId, maxItems, sortList) {
     // results is an array of games
     var i,
+        adsShownCounter,
         gameItem,
         gamesContainer = document.getElementById(elementId),
         newDiv,
         itemHtml,
         countOfGamesShown,
         baseURL = document.location.protocol + "//" + EnginesisSession.serverBaseUrlGet() + "/games/",
-        isTouchDevice = EnginesisSession.isTouchDevice();
+        isTouchDevice = EnginesisSession.isTouchDevice(),
+        adsDisplayPositions = new Array(3, 21, 41, 60, 80, 100),
+        numberOfAdSpots;
 
     if (results != null && results.length > 0 && gamesContainer != null) {
         if (sortList == null) {
@@ -265,6 +281,8 @@ function gameListGamesResponse (results, elementId, maxItems, sortList) {
             maxItems = results.length;
         }
         countOfGamesShown = 0;
+        adsShownCounter = 0;
+        numberOfAdSpots = adsDisplayPositions.length;
         for (i = 0; i < results.length && countOfGamesShown < maxItems; i ++) {
             gameItem = results[i];
             if (isTouchDevice && ! (gameItem.game_plugin_id == "10" || gameItem.game_plugin_id == "9")) {
@@ -276,6 +294,15 @@ function gameListGamesResponse (results, elementId, maxItems, sortList) {
             newDiv.className = "col-sm-6 col-md-4";
             newDiv.innerHTML = itemHtml;
             gamesContainer.appendChild(newDiv);
+            if (adsShownCounter < numberOfAdSpots && i + 1 == adsDisplayPositions[adsShownCounter]) {
+                // Time to show an ad module
+                adsShownCounter ++;
+                newDiv = document.createElement('div');
+                newDiv.className = "col-sm-6 col-md-4";
+                newDiv.innerHTML = makeAdModule();
+                newDiv.id = 'AdSpot' + adsShownCounter;
+                gamesContainer.appendChild(newDiv);
+            }
         }
     } else {
         // no games!

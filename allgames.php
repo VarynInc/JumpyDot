@@ -177,33 +177,6 @@ if ($search != '') {
 ?>
 <div class="container marketing">
     <div id="AllGamesArea" class="row">
-        <div id="AdSpot1" class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <div class="row">
-                    <div id="ad300" class="col-sm-4 col-md-2">
-                        <div id="boxAd300" class="ad300">
-                            <iframe src="<?php echo($webServer);?>/common/ad300.html" frameborder="0" scrolling="no" style="width: 300px; height: 250px; overflow: hidden; z-index: 9999; left: 0px; bottom: 0px; display: inline-block;"></iframe>
-                        </div>
-                        <p id="ad300-subtitle" class="text-center"><small>Advertisement</small></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div id="ad320" class="col-sm-4 col-md-2">
-                        <div id="boxAd200" class="ad320">
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- JumpyDot-320x100-Game-Ad -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;width:320px;height:100px"
-                                 data-ad-client="ca-pub-9118730651662049"
-                                 data-ad-slot="2338504617"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div id="bottomAd" class="row">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
