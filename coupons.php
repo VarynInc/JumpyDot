@@ -1,10 +1,13 @@
 <?php
-require_once('procs/common.php');
+    require_once('procs/common.php');
+
+    processTrackBack();
+    $search = getPostOrRequestVar('q', '');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>JumpyDot: Play. Anywhere.</title>
+    <title>JumpyDot Coupon Offers</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -18,7 +21,7 @@ require_once('procs/common.php');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="description" content="At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
+    <meta name="description" content="Get your coupons here! At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
     <meta name="author" content="JumpyDot">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/carousel.css" rel="stylesheet">
@@ -39,10 +42,10 @@ require_once('procs/common.php');
     <link rel="apple-touch-icon" href="/apple-touch-icon-152x152.png" sizes="152x152"/>
     <link rel="shortcut icon" href="/favicon-196x196.png">
     <meta property="fb:app_id" content="" />
-    <meta property="og:title" content="JumpyDot: Play. Anywhere.">
+    <meta property="og:title" content="JumpyDot Coupon Offers">
     <meta property="og:url" content="http://www.jumpydot.com">
     <meta property="og:site_name" content="JumpyDot">
-    <meta property="og:description" content="At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
+    <meta property="og:description" content="Get your coupons here! At Jumpy Dot, we are building games for the masses – we aim for content that is fun for all ages and technology that performs on all the most popular platforms. Cross platform friendly technologies have created an opportunity to re-invent online games for an audience that moves seamlessly between computers, tablets, and smart-phones.">
     <meta property="og:image" content="http://www.jumpydot.com/images/1200x900.png"/>
     <meta property="og:image" content="http://www.jumpydot.com/images/sitelogo-1024.png"/>
     <meta property="og:image" content="http://www.jumpydot.com/images/1200x600.png"/>
@@ -58,6 +61,9 @@ require_once('procs/common.php');
     <script src="/js/head.min.js"></script>
     <script type="text/javascript">
 
+        var enginesisSiteId = <?php echo($siteId);?>,
+            serverStage = "<?php echo($stage);?>";
+
         head.ready(function() {
             initApp();
         });
@@ -71,12 +77,11 @@ require_once('procs/common.php');
         ga('send', 'pageview');
 
         function initApp() {
-            var serverStage = "<?php echo($stage);?>",
+            var searchString = "<?php echo($search);?>",
                 serverHostDomain = 'jumpydot' + serverStage + '.com';
 
             document.domain = serverHostDomain;
-            window.EnginesisSession = enginesis(<?php echo($siteId);?>, 0, 0, 'enginesis.' + serverHostDomain, '', '', 'en', enginesisCallBack);
-            EnginesisSession.siteListGamesRandom(21, null);
+            window.EnginesisSession = enginesis(enginesisSiteId, 0, 0, 'enginesis.' + serverHostDomain, '', '', 'en', enginesisCallBack);
         }
 
         function enginesisCallBack (enginesisResponse) {
@@ -88,16 +93,12 @@ require_once('procs/common.php');
                 errorMessage = enginesisResponse.results.status.message;
                 switch (enginesisResponse.fn) {
                     case "NewsletterAddressAssign":
-                        if (succeeded == 1) {
-                            setPopupMessage("You are subscribed - Thank you!", "popupMessageResponseOK");
-                            window.setTimeout(hideSubscribePopup, 2000);
-                        } else {
-                            setPopupMessage("Server reports an error: " + errorMessage, "popupMessageResponseError");
-                        }
+                        handleNewsletterServerResponse(succeeded);
                         break;
-                    case "SiteListGamesRandom":
+                    case "SiteListGames":
+                    case "GameFind":
                         if (succeeded == 1) {
-                            gameListGamesResponse(enginesisResponse.results.result, "MissingPageGamesArea", 9, false);
+                            gameListGamesResponse(enginesisResponse.results.result, "AllGamesArea", null, true);
                         }
                         break;
                     default:
@@ -138,9 +139,9 @@ require_once('procs/common.php');
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/allgames.php">All Games</a></li>
-                        <li><a href="/coupons.php">Coupons &amp; Offers</a></li>
+                        <li class="active"><a href="/coupons.php">Coupons &amp; Offers</a></li>
                         <li><a href="/blog/?page_id=48">Blog</a></li>
                         <li><a href="/blog/#our-team">About</a></li>
                     </ul>
@@ -155,24 +156,15 @@ require_once('procs/common.php');
         </nav>
     </div>
 </div><!-- /.navbar-wrapper -->
-<div class="container top-promo-area">
-    <div class="row">
-        <div id="Missing" class="col-sm-8">
-            <h2>Not Found</h2>
-            <p>The content you are looking for is not at this location. The link may be incorrectly entered or it was moved to a new location.</p>
-            <p>Please check it, or use our search field or one of our other links to find the content you are looking for.</p>
-            <p>Or, try one of these awesome games:</p>
-        </div><!-- /.Missing -->
-        <div id="ad300" class="col-sm-4 col-md-2">
-            <div id="boxAd300" class="ad300">
-                <iframe src="<?php echo($webServer);?>/common/ad300.html" frameborder="0" scrolling="no" style="width: 300px; height: 250px; overflow: hidden; z-index: 9999; left: 0px; bottom: 0px; display: inline-block;"></iframe>
-            </div>
-            <p id="ad300-subtitle" class="text-right"><small>Advertisement</small></p>
-        </div>
-    </div><!-- row -->
-</div><!-- /.carousel -->
 <div class="container marketing">
-    <div id="MissingPageGamesArea" class="row">
+    <div id="AllGamesArea" class="row">
+        <div class="col-xs-12" style="min-height: 1190px;">
+            <noscript>
+                <p>Coupons powered by <a href="http://www.coupons.com?pid=13903&nid=10&zid=xh20&bid=1379910001">Coupons.com</a></p>
+            </noscript>
+            <script id="scriptId_718x940_117571" type="text/javascript" src="//bcg.coupons.com/?scriptId=117571&bid=1379910001&format=718x940&bannerType=3&channel=Coupon%20Page">
+            </script>
+        </div>
     </div>
     <div id="bottomAd" class="row">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

@@ -140,6 +140,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="/allgames.php">All Games</a></li>
+                        <li><a href="/coupons.php">Coupons &amp; Offers</a></li>
                         <li><a href="/blog/?page_id=48">Blog</a></li>
                         <li><a href="/blog/#our-team">About</a></li>
                     </ul>
@@ -209,6 +210,7 @@
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/allgames.php">All Games</a></li>
+                        <li><a href="/coupons.php">Coupons &amp; Offers</a></li>
                         <li><a href="/blog/?page_id=48">Blog</a></li>
                         <li><a href="/blog/#our-team">About</a></li>
                     </ul>

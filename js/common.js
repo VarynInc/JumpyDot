@@ -185,14 +185,25 @@ function makeGameModule (gameId, gameName, gameDescription, gameImg, gameLink) {
 
 /**
  * makeAdModule will generate the HTML for a standard ad module.
- * @param: {string} webServer to load the ad iframe HTML
  * @returns {string} the HTML
  */
 function makeAdModule () {
     var innerHtml;
 
-    innerHtml = '<div class="thumbnail"><div class="row"><div id="ad300" class="col-sm-4 col-md-2"><div id="boxAd300" class="ad300x412">';
+    innerHtml = '<div class="thumbnail"><div class="row"><div class="col-sm-4 col-md-2 adContainer412"><div id="boxAd300" class="ad300x412">';
     innerHtml += '<iframe src="/common/adModule.html" frameborder="0" scrolling="no" style="width: 300px; height: 412px; overflow: hidden; z-index: 9999; left: 0px; bottom: 0px; display: inline-block;"></iframe></div></div></div></div>';
+    return innerHtml;
+}
+
+/**
+ * makeCouponModule will generate the HTML for a standard Coupons.com module.
+ * @returns {string} the HTML
+ */
+function makeCouponModule () {
+    var innerHtml;
+
+    innerHtml = '<div class="thumbnail"><div class="row"><div class="col-sm-4 col-md-2 adContainer412"><div id="boxAd300" class="ad300x412">';
+    innerHtml += '<iframe src="/common/couponModule.html" frameborder="0" scrolling="no" style="width: 300px; height: 412px; overflow: hidden; z-index: 9999; left: 0px; bottom: 0px; display: inline-block;"></iframe></div></div></div></div>';
     return innerHtml;
 }
 
@@ -299,7 +310,11 @@ function gameListGamesResponse (results, elementId, maxItems, sortList) {
                 adsShownCounter ++;
                 newDiv = document.createElement('div');
                 newDiv.className = "col-sm-6 col-md-4";
-                newDiv.innerHTML = makeAdModule();
+                if (adsShownCounter == 1) {
+                    newDiv.innerHTML = makeCouponModule();
+                } else {
+                    newDiv.innerHTML = makeAdModule();
+                }
                 newDiv.id = 'AdSpot' + adsShownCounter;
                 gamesContainer.appendChild(newDiv);
             }

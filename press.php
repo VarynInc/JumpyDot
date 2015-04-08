@@ -89,6 +89,7 @@ require_once('procs/common.php');
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
                         <li><a href="/allgames.php">All Games</a></li>
+                        <li><a href="/coupons.php">Coupons &amp; Offers</a></li>
                         <li><a href="/blog/?page_id=48">Blog</a></li>
                         <li class="active"><a href="/blog/#our-team">About</a></li>
                     </ul>
@@ -269,6 +270,7 @@ require_once('procs/common.php');
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/allgames.php">All Games</a></li>
+                        <li><a href="/coupons.php">Coupons &amp; Offers</a></li>
                         <li><a href="/blog/?page_id=48">Blog</a></li>
                         <li><a href="/blog/#our-team">About</a></li>
                     </ul>
