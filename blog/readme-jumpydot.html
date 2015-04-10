@@ -11,20 +11,21 @@
     <h2>Changes Made to WordPress</h2>
     <p>Before you upgrade you should do three things:</p>
     <ol>
-        <li>Make a backup of the entire /blog folder in case you need to reference something overwritten in an upgrade.</li>
-        <li>Make a backup of the entire database.</li>
+        <li>Make a backup of the entire /blog folder in case you need to reference something overwritten in an upgrade. Also note the entire website is versioned with git so you can rely on that if your working copy is up to date.</li>
+        <li>Make a backup of the entire database. There is a script on the server to do this.</li>
     </ol>
     <h3>wp-config.php</h3>
     <p>Note the reference to /procs/common.php this gets the database connection info.</p>
     <p>Setup the database connection info and the WP authentication keys</p>
     <h3>wp-content/themes</h3>
-    <p>Added the ViewPoint theme from Theme Forest</p>
+    <p>Added the ViewPoint theme from Theme  (blog/wp-content/themes/ViewPoint/)</p>
     <p>Edited the following theme files. Do a diff on these files if you update so you can reapply the changes.</p>
     <ul>
         <li>header.php</li>
         <li>css/base.css</li>
         <li>css/layout.css</li>
         <li>images/* (updated to JumpyDot images)</li>
+        <li>index.php - updated to use our mailer</li>
     </ul>
     <h3>wp-content/uploads</h3>
     <p>Grab all the uploaded media files from here that will be referenced in Posts and Pages.</p>

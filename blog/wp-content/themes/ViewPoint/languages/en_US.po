@@ -28,7 +28,7 @@ msgid "Message: "
 msgstr ""
 
 #: ../index.php:85
-msgid "<b>Thank you!</b> I have received your message."
+msgid "<b>Thank you!</b> Your message has been sent. Please allow 24 hours for a response if one is required."
 msgstr ""
 
 #: ../index.php:89

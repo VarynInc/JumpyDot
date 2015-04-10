@@ -129,6 +129,19 @@ function setDatabaseConnectionInfo () {
     }
 }
 
+function setMailHostsTable ($serverStage) {
+    global $_MAIL_HOSTS;
+    // Mail/sendmail/Postfix/Mailgun config
+    $_MAIL_HOSTS = array(
+        '-l' => array('host' => 'smtp.verizon.net', 'port' => 465, 'ssl' => true, 'tls' => false, 'user' => 'jlf990@verizon.net', 'password' => 'proPhet5++'),
+        '-d' => array('host' => 'smtp.mailgun.org', 'port' => 587, 'ssl' => false, 'tls' => true, 'user' => 'postmaster@mailer.enginesis-q.com', 'password' => '1h4disai51w5'),
+        '-q' => array('host' => 'smtp.mailgun.org', 'port' => 587, 'ssl' => false, 'tls' => true, 'user' => 'postmaster@mailer.enginesis-q.com', 'password' => '1h4disai51w5'),
+        '-x' => array('host' => 'smtpout.secureserver.net', 'port' => 25, 'ssl' => false, 'tls' => false, 'user' => '', 'password' => ''),
+        ''   => array('host' => 'smtp.mailgun.org', 'port' => 587, 'ssl' => false, 'tls' => true, 'user' => 'postmaster@mailer.enginesis.com', 'password' => '6w88jmvawr63')
+    );
+    ini_set('SMTP', $_MAIL_HOSTS[$serverStage]['host']);
+}
+
 function hashPassword ($password) {
     // Call this function to generate a password hash to save in the database instead of the password.
     // Generate random salt, can only be used with the exact password match.
@@ -227,6 +240,18 @@ function callEnginesisAPI ($fn, $serverURL, $paramArray) {
     return $contents;
 }
 
+/**
+ * @function: checkEmailAddress: process a possible track back request when a page loads.
+ * @param {string} email address to validate
+ * @returns bool true if possibly valid
+ */
+function checkEmailAddress ($email) {
+    //
+    // Email address validator. Given a single email address returns true if format acceptable or false.
+    //
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}
+
     /**
      * processTrackBack: process a possible track back request when a page loads.
      * @param e: the event we are tracking, such as "Clicked Logo". While these are arbitrary, we should try to use the same value for the same event across all pages.
@@ -260,9 +285,11 @@ $server = '';
 $stage = '';
 $webServer = '';
 $sqlDatabaseConnectionInfo = null;
+$_MAIL_HOSTS = null;
 $server = serverName();
 $stage = serverStage($server);
 $serviceProtocol = getServiceProtocol();
 $enginesisServer = $serviceProtocol . '://enginesis.jumpydot' . $stage . '.com';
 $webServer = $serviceProtocol . '://www.jumpydot' . $stage . '.com';
 setDatabaseConnectionInfo();
+setMailHostsTable($stage);
