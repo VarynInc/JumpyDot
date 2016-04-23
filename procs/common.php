@@ -82,66 +82,6 @@ function serverStage ($hostName = null) {
     return $targetPlatform;
 }
 
-function setDatabaseConnectionInfo () {
-    global $sqlDatabaseConnectionInfo;
-    $serverStage = serverStage(null);
-    switch($serverStage) {
-        case '-d':	// dev
-            $sqlDatabaseConnectionInfo = array(
-                    'host' => 'localhost',
-                    'port' => '3306',
-                    'user' => 'jumpydot',
-                    'password' => 'bOunCy;24',
-                    'db' => 'jumpydotd');
-            break;
-        case '-q':	// qa
-            $sqlDatabaseConnectionInfo = array(
-                    'host' => 'localhost',
-                    'port' => '3306',
-                    'user' => 'jumpydot',
-                    'password' => 'bOunCy;24',
-                    'db' => 'jumpydotq');
-            break;
-        case '-l':	// localhost
-            $sqlDatabaseConnectionInfo = array(
-                    'host' => '127.0.0.1',
-                    'port' => '3306',
-                    'user' => 'jumpydot',
-                    'password' => 'bOunCy;24',
-                    'db' => 'jumpydot');
-            break;
-        case '-x':	// external dev
-            $sqlDatabaseConnectionInfo = array(
-                    'host' => 'localhost',
-                    'port' => '3306',
-                    'user' => 'jumpydot',
-                    'password' => 'bOunCy;24',
-                    'db' => 'jumpydot');
-            break;
-        default:	// live
-            $sqlDatabaseConnectionInfo = array(
-                    'host' => 'localhost',
-                    'port' => '3306',
-                    'user' => 'jumpydot',
-                    'password' => 'bOunCy;24',
-                    'db' => 'jumpydot');
-            break;
-    }
-}
-
-function setMailHostsTable ($serverStage) {
-    global $_MAIL_HOSTS;
-    // Mail/sendmail/Postfix/Mailgun config
-    $_MAIL_HOSTS = array(
-        '-l' => array('host' => 'smtp.verizon.net', 'port' => 465, 'ssl' => true, 'tls' => false, 'user' => 'jlf990@verizon.net', 'password' => 'proPhet5++'),
-        '-d' => array('host' => 'smtp.mailgun.org', 'port' => 587, 'ssl' => false, 'tls' => true, 'user' => 'postmaster@mailer.enginesis-q.com', 'password' => '1h4disai51w5'),
-        '-q' => array('host' => 'smtp.mailgun.org', 'port' => 587, 'ssl' => false, 'tls' => true, 'user' => 'postmaster@mailer.enginesis-q.com', 'password' => '1h4disai51w5'),
-        '-x' => array('host' => 'smtpout.secureserver.net', 'port' => 25, 'ssl' => false, 'tls' => false, 'user' => '', 'password' => ''),
-        ''   => array('host' => 'smtp.mailgun.org', 'port' => 587, 'ssl' => false, 'tls' => true, 'user' => 'postmaster@mailer.enginesis.com', 'password' => '6w88jmvawr63')
-    );
-    ini_set('SMTP', $_MAIL_HOSTS[$serverStage]['host']);
-}
-
 function hashPassword ($password) {
     // Call this function to generate a password hash to save in the database instead of the password.
     // Generate random salt, can only be used with the exact password match.
@@ -291,5 +231,3 @@ $stage = serverStage($server);
 $serviceProtocol = getServiceProtocol();
 $enginesisServer = $serviceProtocol . '://enginesis.jumpydot' . $stage . '.com';
 $webServer = $serviceProtocol . '://www.jumpydot' . $stage . '.com';
-setDatabaseConnectionInfo();
-setMailHostsTable($stage);
