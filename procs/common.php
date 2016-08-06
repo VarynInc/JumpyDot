@@ -231,3 +231,7 @@ $stage = serverStage($server);
 $serviceProtocol = getServiceProtocol();
 $enginesisServer = $serviceProtocol . '://enginesis.jumpydot' . $stage . '.com';
 $webServer = $serviceProtocol . '://www.jumpydot' . $stage . '.com';
+
+require_once('config.php');
+setDatabaseConnectionInfo();
+setMailHostsTable($stage);
