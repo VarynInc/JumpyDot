@@ -39,6 +39,7 @@ get_header(); ?>
         query_posts(array( 'post_type' => 'page', 'post__in' => $viewpoint['pages_topmenu'], 'posts_per_page' => count($viewpoint['pages_topmenu']), 'orderby' => 'menu_order', 'order' => 'ASC' ) );
     } else {
         query_posts(array( 'post_type' => 'page', 'posts_per_page' => 4) );
+        $viewpoint['pages_topmenu'] = [];
     }
     $i = 1;
     while(have_posts() ) : the_post(); ?>
