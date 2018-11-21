@@ -1,5 +1,5 @@
 <?php
-require_once('procs/common.php');
+require_once('../services/common.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

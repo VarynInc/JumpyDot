@@ -1,6 +1,5 @@
 <?php
-require_once('procs/common.php');
-
+require_once('../services/common.php');
 processTrackBack();
 $search = getPostOrRequestVar('q', '');
 ?>
@@ -62,7 +61,7 @@ $search = getPostOrRequestVar('q', '');
     <script type="text/javascript">
 
         var enginesisSiteId = <?php echo($siteId);?>,
-            serverStage = "<?php echo($stage);?>";
+            serverStage = "<?php echo($serverStage);?>";
 
         head.ready(function() {
             initApp();

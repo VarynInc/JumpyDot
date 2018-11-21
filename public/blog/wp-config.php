@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/../procs/common.php');
+require_once(dirname(__FILE__) . '/../../services/common.php');
 /**
  * The base configurations of the WordPress.
  *
@@ -14,6 +14,7 @@ require_once(dirname(__FILE__) . '/../procs/common.php');
  *
  * @package WordPress
  */
+$sqlDatabaseConnectionInfo = $sqlDBs[ACTIVE_DATABASE];
 define('DB_NAME',     $sqlDatabaseConnectionInfo['db']);
 define('DB_USER',     $sqlDatabaseConnectionInfo['user']);
 define('DB_PASSWORD', $sqlDatabaseConnectionInfo['password']);

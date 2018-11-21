@@ -1,5 +1,5 @@
 <?php
-require_once('procs/common.php');
+require_once('../services/common.php');
 $search = getPostOrRequestVar('q', null);
 if ($search != null) {
     header('location:/allgames.php?q=' . $search);
@@ -66,7 +66,7 @@ $showSubscribe = getPostOrRequestVar('s', '0');
         <script type="text/javascript">
 
             var enginesisSiteId = <?php echo($siteId);?>,
-                serverStage = "<?php echo($stage);?>",
+                serverStage = "<?php echo($serverStage);?>",
                 enginesisGameListId = 6,
                 enginesisHomePagePromoId = 2;
 

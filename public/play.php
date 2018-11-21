@@ -1,5 +1,5 @@
 <?php
-require_once('procs/common.php');
+require_once('../services/common.php');
 processTrackBack();
 $gameId = getPostOrRequestVar('id', '');
 if ($gameId == '') {
@@ -162,7 +162,7 @@ $isPlayBuzzSpecialCase = false;
 
         function initApp() {
             var gameId = "<?php echo($gameId);?>",
-                serverStage = "<?php echo($stage);?>",
+                serverStage = "<?php echo($serverStage);?>",
                 serverHostDomain = 'jumpydot' + serverStage + '.com';
 
             enginesisServer = 'enginesis.' + serverHostDomain;

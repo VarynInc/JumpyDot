@@ -1,5 +1,5 @@
 <?php
-require_once('procs/common.php');
+require_once('../services/common.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +68,7 @@ require_once('procs/common.php');
         ga('send', 'pageview');
 
         function initApp() {
-            var serverStage = "<?php echo($stage);?>",
+            var serverStage = "<?php echo($serverStage);?>",
                 serverHostDomain = 'jumpydot' + serverStage + '.com';
 
             document.domain = serverHostDomain;

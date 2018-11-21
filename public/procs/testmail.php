@@ -5,7 +5,7 @@
  * Date: 4/10/2015
  * Time: 9:25 AM
  */
-require_once('common.php');
+require_once('../../services/common.php');
 require_once('EnginesisMailer.php');
 
 $mailer = new EnginesisMailer('info@jumpydot.com', 'john@varyn.com', 'Test Email from server', 'This is a test 1 2 3.', NULL);

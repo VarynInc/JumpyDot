@@ -2,7 +2,7 @@
 /**
  * track.php: record a tracking event and forward to correct page
  */
-require_once('common.php');
+require_once('../../services/common.php');
 processTrackBack();
 $event = getPostOrRequestVar('e', '');
 switch ($event) {
