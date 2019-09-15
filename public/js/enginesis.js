@@ -107,15 +107,15 @@
     enginesis.init = function(parameters) {
         initializeLocalSessionInfo();
         if (parameters) {
-            enginesis.siteId = parameters.siteId != undefined ? parameters.siteId : 0;
-            enginesis.gameId = parameters.gameId != undefined ? parameters.gameId : 0;
-            enginesis.gameKey = parameters.gameKey != undefined ? parameters.gameKey : "";
-            enginesis.gameGroupId = parameters.gameGroupId != undefined ? parameters.gameGroupId : 0;
+            enginesis.siteId = parameters.siteId !== undefined ? parameters.siteId : 0;
+            enginesis.gameId = parameters.gameId !== undefined ? parameters.gameId : 0;
+            enginesis.gameKey = parameters.gameKey !== undefined ? parameters.gameKey : "";
+            enginesis.gameGroupId = parameters.gameGroupId !== undefined ? parameters.gameGroupId : 0;
             enginesis.languageCode = setLanguageCode(parameters.languageCode);
-            enginesis.serverStage = parameters.serverStage != undefined ? parameters.serverStage : "";
-            enginesis.developerKey = parameters.developerKey != undefined ? parameters.developerKey : "";
-            enginesis.authToken = parameters.authToken != undefined ? parameters.authToken : null;
-            enginesis.callBackFunction = parameters.callBackFunction != undefined ? parameters.callBackFunction : null;
+            enginesis.serverStage = parameters.serverStage !== undefined ? parameters.serverStage : "*";
+            enginesis.developerKey = parameters.developerKey !== undefined ? parameters.developerKey : "";
+            enginesis.authToken = parameters.authToken !== undefined ? parameters.authToken : null;
+            enginesis.callBackFunction = parameters.callBackFunction !== undefined ? parameters.callBackFunction : null;
         }
         setPlatform();
         setProtocolFromCurrentLocation();
@@ -907,10 +907,12 @@
             state_status: 0,
             response: "json"
         };
-        if (enginesis.loggedInUserInfo.userId != 0) {
+        if (enginesis.loggedInUserInfo.userId != 0 && enginesis.authTokenWasValidated) {
             serverParams.logged_in_user_id = enginesis.loggedInUserInfo.userId;
-            serverParams.user_id = enginesis.loggedInUserInfo.userId;
             serverParams.authtok = enginesis.authToken;
+            if (isNull(serverParams.user_id)) {
+                serverParams.user_id = enginesis.loggedInUserInfo.userId;
+            }
         }
         if (enginesis.gameId) {
             serverParams.game_id = enginesis.gameId;
@@ -1076,9 +1078,11 @@
     function qualifyAndSetServerStage (newServerStage) {
         var regMatch;
         var currentHost = enginesis.isBrowserBuild ? global.location.host : ""; // TODO: How to get host in NodeJS?
+        enginesis.serverHost = null;
 
-        if (typeof newServerStage === "undefined" || newServerStage == null) {
-            newServerStage = currentHost;
+        if (newServerStage === undefined || newServerStage === null) {
+            // if a stage is not request then match the current stage
+            newServerStage = "*";
         }
         switch (newServerStage) {
             case "":
@@ -1088,33 +1092,49 @@
             case "-x":
                 // use the stage requested
                 enginesis.serverStage = newServerStage;
-                enginesis.serverHost = "www.enginesis" + enginesis.serverStage + ".com";
                 break;
             case "*":
                 // match the stage matching current host
                 if (currentHost.substr(0, 9) == "localhost") {
                     newServerStage = "-l";
                 } else {
-                    regMatch = /\-[ldqx]\./.exec(currentHost);
+                    regMatch = /-[ldqx]\./.exec(currentHost);
                     if (regMatch != null && regMatch.index > 0) {
                         newServerStage = currentHost.substr(regMatch.index, 2);
                     } else {
-                        newServerStage = ""; // anything we do not expect goes to the live instance
+                        // anything we do not expect goes to the live instance
+                        newServerStage = "";
                     }
                 }
                 enginesis.serverStage = newServerStage;
-                enginesis.serverHost = "www.enginesis" + enginesis.serverStage + ".com";
                 break;
             default:
                 // if it was not a stage match assume it is a full host name, find the stage in it if it exists
-                regMatch = /\-[ldqx]\./.exec(newServerStage);
+                regMatch = /-[ldqx]\./.exec(newServerStage);
                 if (regMatch != null && regMatch.index > 0) {
                     enginesis.serverStage = newServerStage.substr(regMatch.index, 2);
                 } else {
-                    enginesis.serverStage = ""; // anything we do not expect goes to the live instance
+                    // anything we do not expect goes to the live instance
+                    enginesis.serverStage = "";
                 }
+                // use the domain requested
                 enginesis.serverHost = newServerStage;
                 break;
+        }
+        if (enginesis.serverHost === null) {
+            // convert www.host.tld into enginesis.host.tld
+            var service = "enginesis";
+            var domainParts = currentHost.split(".");
+            var numberOfParts = domainParts.length;
+            if (numberOfParts > 1) {
+                enginesis.serverHost = service
+                    + "."
+                    + domainParts[numberOfParts - 2].replace(/-[ldqx]$/, "")
+                    + enginesis.serverStage
+                    + "." + domainParts[numberOfParts - 1];
+            } else {
+                enginesis.serverHost = currentHost;
+            }
         }
         enginesis.siteResources.serviceURL = getProtocol() + enginesis.serverHost + "/index.php";
         enginesis.siteResources.avatarImageURL = getProtocol() + enginesis.serverHost + "/avatar/index.php";
@@ -1246,7 +1266,10 @@
     /**
      * Get info about the current logged in user, if there is one, from authtok parameter or cookie.
      * The authentication token can be provided to the game via query string (authtok=xxx) or
-     * stored in a HTTP session cookie.
+     * stored in a HTTP session cookie. The priority logic is:
+     *   1. use authToken provided as a parameter to `enginesis.init()`
+     *   2. else, use authtok provided as a query to the current page
+     *   3. else, use authToken saved in enginesis session cookie
      * @returns {boolean} true if a user is restored this way, false if not.
      */
     function restoreUserFromAuthToken () {
@@ -1255,20 +1278,24 @@
         var userInfo;
         var wasRestored = false;
 
-        if (authToken == null || authToken == "") {
+        if (isEmpty(authToken)) {
             queryParameters = queryStringToObject();
-            if (typeof queryParameters.authtok !== "undefined") {
+            if (queryParameters.authtok !== undefined) {
                 authToken = queryParameters.authtok;
+                debugLog("restoreUserFromAuthToken from query: " + authToken);
             }
+        } else {
+            debugLog("restoreUserFromAuthToken from parameter: " + authToken);
         }
-        if (authToken == null || authToken == "") {
+        if (isEmpty(authToken)) {
             authToken = cookieGet(enginesis.SESSION_COOKIE);
+            debugLog("restoreUserFromAuthToken from cookie: " + authToken);
         }
-        if (authToken != null && authToken != "") {
+        if ( ! isEmpty(authToken)) {
             // TODO: Validate the token (for now we are accepting that it is valid but we should check!) If the authToken is valid then we can trust the userInfo
             // TODO: we can use cr to validate the token was not changed
             userInfo = cookieGet(enginesis.SESSION_USERINFO);
-            if (userInfo != null && userInfo != "") {
+            if ( ! isEmpty(userInfo)) {
                 userInfo = JSON.parse(userInfo);
                 if (userInfo != null) {
                     enginesis.authToken = authToken;
@@ -1280,7 +1307,14 @@
                     enginesis.networkId = Math.floor(userInfo.network_id);
                     wasRestored = true;
                 }
+                debugLog("restoreUserFromAuthToken valid user: " + enginesis.loggedInUserInfo.userName + "(" + enginesis.loggedInUserInfo.userId + ")");
+            } else {
+                // if we have an authtoken but we did not cache the user info, then
+                // if we trust that token, we need to log this user in
+                debugLog("restoreUserFromAuthToken valid token but no cached user " + authToken);
             }
+        } else {
+            debugLog("restoreUserFromAuthToken no token to authorize.");
         }
         return wasRestored;
     }
