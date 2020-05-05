@@ -28,7 +28,7 @@
     "use strict";
 
     var enginesis = {
-        VERSION: "2.4.71",
+        VERSION: "2.4.72",
         debugging: true,
         disabled: false, // use this flag to turn off communicating with the server
         isOnline: true,  // flag to determine if we are currently able to reach Enginesis servers
@@ -1098,6 +1098,7 @@
     function qualifyAndSetServerStage (newServerStage) {
         var regMatch;
         var currentHost = enginesis.isBrowserBuild ? global.location.host : ""; // TODO: How to get host in NodeJS?
+        var isLocalhost = false;
         enginesis.serverHost = null;
 
         if (newServerStage === undefined || newServerStage === null) {
@@ -1117,6 +1118,7 @@
                 // match the stage matching current host
                 if (currentHost.substr(0, 9) == "localhost") {
                     newServerStage = "-l";
+                    isLocalhost = true;
                 } else {
                     regMatch = /-[ldqx]\./.exec(currentHost);
                     if (regMatch != null && regMatch.index > 0) {
@@ -1152,6 +1154,8 @@
                     + domainParts[numberOfParts - 2].replace(/-[ldqx]$/, "")
                     + enginesis.serverStage
                     + "." + domainParts[numberOfParts - 1];
+            } else if (isLocalhost) {
+                enginesis.serverHost = "enginesis-l.com";
             } else {
                 enginesis.serverHost = currentHost;
             }
